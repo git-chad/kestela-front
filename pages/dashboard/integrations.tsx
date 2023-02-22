@@ -34,6 +34,18 @@ export default function Integrations() {
     let companyInfo = await fetch(`${process.env.BACK_URL}/v1/quickbooks/getCompanyInfo`)
     companyInfo = await companyInfo.json()
     console.log("Company Info :", companyInfo)
+
+    const { access_token, refresh_token } = res as any
+
+    let getAccounts = await fetch(`${process.env.BACK_URL}/v1/api-quickbooks/getAccounts`, {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ access_token, refresh_token, realmId })
+    })
+
+    getAccounts = await getAccounts.json()
+
+    console.log(getAccounts)
   }
 
   useEffect(() => {
