@@ -6,15 +6,14 @@ import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import screenshotContacts from '@/images/screenshots/contacts.png'
 import screenshotInventory from '@/images/screenshots/inventory.png'
-import screenshotProfitLoss from '@/images/screenshots/profit-loss.png'
+import screenshotSamplePL from '@/images/screenshots/sampleP&L.png'
 
 const features = [
   {
-    name: 'Reporting',
-    summary: 'Stay on top of things with always up-to-date reporting features.',
-    description:
-      'We talked about reporting in the section above but we needed three items here, so mentioning it one more time for posterity.',
-    image: screenshotProfitLoss,
+    name: 'Data',
+    summary: 'Import your data and keep your templates auto-refreshed.',
+    description: '',
+    image: screenshotSamplePL,
     icon: function ReportingIcon() {
       let id = useId()
       return (
@@ -44,12 +43,10 @@ const features = [
     },
   },
   {
-    name: 'Inventory',
-    summary:
-      'Never lose track of what’s in stock with accurate inventory tracking.',
-    description:
-      'We don’t offer this as part of our software but that statement is inarguably true. Accurate inventory tracking would help you for sure.',
-    image: screenshotInventory,
+    name: 'Templates',
+    summary: 'Leverage the work that others have done, stop building from scratch.',
+    description: '',
+    image: screenshotSamplePL,
     icon: function InventoryIcon() {
       return (
         <>
@@ -72,12 +69,10 @@ const features = [
     },
   },
   {
-    name: 'Contacts',
-    summary:
-      'Organize all of your contacts, service providers, and invoices in one place.',
-    description:
-      'This also isn’t actually a feature, it’s just some friendly advice. We definitely recommend that you do this, you’ll feel really organized and professional.',
-    image: screenshotContacts,
+    name: 'Dashboards',
+    summary: 'Create dashboards from your spreadsheet and share with others.',
+    description: '',
+    image: screenshotSamplePL,
     icon: function ContactsIcon() {
       return (
         <>
@@ -216,11 +211,10 @@ export function SecondaryFeatures() {
       <Container>
         <div className="mx-auto max-w-2xl md:text-center">
           <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
-            Simplify everyday business tasks.
+            Meet Kestela.
           </h2>
           <p className="mt-4 text-lg tracking-tight text-slate-700">
-            Because you’d probably be a little confused if we suggested you
-            complicate your everyday business tasks instead.
+            Kestela’s solutions leverage the ease and flexibility of your existing spreadsheet so your workflow isn’t disrupted.
           </p>
         </div>
         <FeaturesMobile />

@@ -5,35 +5,36 @@ import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
 import backgroundImage from '@/images/background-features.jpg'
-import screenshotExpenses from '@/images/screenshots/expenses.png'
-import screenshotPayroll from '@/images/screenshots/payroll.png'
-import screenshotReporting from '@/images/screenshots/reporting.png'
-import screenshotVatReturns from '@/images/screenshots/vat-returns.png'
+// import screenshotExpenses from '@/images/screenshots/expenses.png'
+// import screenshotPayroll from '@/images/screenshots/payroll.png'
+// import screenshotReporting from '@/images/screenshots/reporting.png'
+// import screenshotVatReturns from '@/images/screenshots/vat-returns.png'
+import screenshotExpenses from '@/images/screenshots/sampleP&L.png'
 
 const features = [
   {
-    title: 'Payroll',
+    title: 'Select your data',
     description:
-      "Keep track of everyone's salaries and whether or not they've been paid. Direct deposit not supported.",
-    image: screenshotPayroll,
-  },
-  {
-    title: 'Claim expenses',
-    description:
-      "All of your receipts organized into one place, as long as you don't mind typing in the data by hand.",
+      "Connect your data directly to your spreadsheet, no SQL required.",
     image: screenshotExpenses,
   },
   {
-    title: 'VAT handling',
+    title: 'Choose your template',
     description:
-      "We only sell our software to companies who don't deal with VAT at all, so technically we do all the VAT stuff they need.",
-    image: screenshotVatReturns,
+      "From finance to revenue operations to marketing to board reporting.",
+    image: screenshotExpenses,
   },
   {
-    title: 'Reporting',
+    title: 'Publish to your spreadsheet',
     description:
-      'Easily export your data into an Excel spreadsheet where you can do whatever the hell you want with it.',
-    image: screenshotReporting,
+      "A simple Google Sheets add-on keeping you connected.",
+    image: screenshotExpenses,
+  },
+  {
+    title: 'Share with others',
+    description:
+      'Work they want you want in a spreasheet, share the final product with others.',
+    image: screenshotExpenses,
   },
 ]
 
@@ -72,11 +73,10 @@ export function PrimaryFeatures() {
       <Container className="relative">
         <div className="max-w-2xl md:mx-auto md:text-center xl:max-w-none">
           <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
-            Everything you need to run your books.
+            Investor approved templates synced to your data.
           </h2>
           <p className="mt-6 text-lg tracking-tight text-blue-100">
-            Well everything you need if you aren’t that picky about minor
-            details like tax compliance.
+            Get up and running in less than five minutes.
           </p>
         </div>
         <Tab.Group
