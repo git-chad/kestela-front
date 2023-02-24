@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import imgGoogleDrive from '@/images/logos/google_drive_icon_2020.svg';
+import imgSamplePL from '@/images/screenshots/sampleP&L.png';
 
 const products = [
   {
@@ -8,44 +9,40 @@ const products = [
     name: 'Name of tempalte',
     color: 'A few description of the template',
     href: '#',
-    imageSrc:
-      'https://ckeditor.com/cke4/sites/default/files/styles/large/public/spreadsheet/spreadsheet_01_0.png?itok=04aFLXFm',
+    imageSrc: imgSamplePL,
     imageAlt:
       'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-    price: 'Free or $40',
+    price: '',
   },
   {
     id: 2,
     name: 'Name of tempalte',
     color: 'A few description of the template',
     href: '#',
-    imageSrc:
-      'https://ckeditor.com/cke4/sites/default/files/styles/large/public/spreadsheet/spreadsheet_01_0.png?itok=04aFLXFm',
+    imageSrc: imgSamplePL,
     imageAlt:
       'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-    price: 'Free or $40',
+    price: '',
   },
   {
     id: 3,
     name: 'Name of tempalte',
     color: 'A few description of the template',
     href: '#',
-    imageSrc:
-      'https://ckeditor.com/cke4/sites/default/files/styles/large/public/spreadsheet/spreadsheet_01_0.png?itok=04aFLXFm',
+    imageSrc: imgSamplePL,
     imageAlt:
       'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-    price: 'Free or $40',
+    price: '',
   },
   {
     id: 4,
     name: 'Name of tempalte',
     color: 'A few description of the template',
     href: '#',
-    imageSrc:
-      'https://ckeditor.com/cke4/sites/default/files/styles/large/public/spreadsheet/spreadsheet_01_0.png?itok=04aFLXFm',
+    imageSrc: imgSamplePL,
     imageAlt:
       'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-    price: 'Free or $40',
+    price: '',
   },
 ];
 
@@ -60,10 +57,10 @@ export default function Example() {
             <div key={product.id}>
               <div className="relative">
                 <div className="relative h-72 w-full overflow-hidden rounded-lg">
-                  <img
+                  <Image
                     src={product.imageSrc}
                     alt={product.imageAlt}
-                    className="h-full w-full object-cover object-center"
+                    className="h-full w-full object-center"
                   />
                 </div>
                 <div className="relative mt-4">

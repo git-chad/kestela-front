@@ -9,11 +9,9 @@ export default function PrivacyPolicy() {
       </Head>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-justify">
-          <h2 className="text-2xl text-center my-8">Privacy Policy</h2>
+          <h2 className="text-2xl text-center my-8">Terms and Conditions</h2>
           <div className="[&>br]:my-1 py-10">
             <span>
-              Terms and Conditions
-              <br />
               <br /> Welcome to Kestela!
               <br />
               <br /> These terms and conditions outline the rules and regulations for the

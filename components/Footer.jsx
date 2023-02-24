@@ -1,8 +1,8 @@
-import Link from 'next/link'
+import Link from 'next/link';
 
-import { Container } from '@/components/Container'
-import { Logo } from '@/components/Logo'
-import { NavLink } from '@/components/NavLink'
+import { Container } from '@/components/Container';
+import { Logo } from '@/components/Logo';
+import { NavLink } from '@/components/NavLink';
 
 export function Footer() {
   return (
@@ -15,6 +15,10 @@ export function Footer() {
               <NavLink href="#features">Features</NavLink>
               <NavLink href="#testimonials">Testimonials</NavLink>
               <NavLink href="#pricing">Pricing</NavLink>
+              <NavLink href="/privacy-policy">Privacy policy</NavLink>
+            </div>
+            <div className="my-2 flex justify-center">
+              <NavLink href="/terms-conditions">Terms & conditions</NavLink>
             </div>
           </nav>
         </div>
@@ -46,11 +50,10 @@ export function Footer() {
             </Link>
           </div>
           <p className="mt-6 text-sm text-slate-500 sm:mt-0">
-            Copyright &copy; {new Date().getFullYear()} TaxPal. All rights
-            reserved.
+            Copyright &copy; {new Date().getFullYear()} TaxPal. All rights reserved.
           </p>
         </div>
       </Container>
     </footer>
-  )
+  );
 }
