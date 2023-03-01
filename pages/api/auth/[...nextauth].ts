@@ -28,7 +28,7 @@ const authOptions: AuthOptions = {
           const user = (await res.json()) as any;
           // If no error and we have user data, return it
           if (res.status === 200 && user) {
-            return user;
+            return { ...user };
           } else {
             throw user.message;
           }
@@ -48,11 +48,11 @@ const authOptions: AuthOptions = {
       if (account && user) {
         token.access_token = user.access_token;
         token.refresh_token = user.refresh_token;
-        token.name = `${user.user_metadata.firstname} ${user.user_metadata.lastname}`;
+        token.name = `${user.firstname} ${user.lastname}`;
         token.picture =
           user.image ||
           `https://ui-avatars.com/api/?name=${
-            user.user_metadata.firstname + '+' + user.user_metadata.lastname
+            user.firstname + '+' + user.lastname
           }&background=0D8ABC&color=fff`;
       }
       return token;

@@ -9,7 +9,7 @@ import {
   LinkIcon,
   AdjustmentsHorizontalIcon,
 } from '@heroicons/react/24/outline';
-import { signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 
 const navigation = [
   { name: 'Dashboard', icon: HomeIcon, href: '/dashboard' },
@@ -30,6 +30,7 @@ function classNames(...classes: any) {
 }
 
 export default function Sidebar() {
+  const { data } = useSession() as any;
   const router = useRouter();
   return (
     <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white col-span-1">
@@ -124,7 +125,7 @@ export default function Sidebar() {
             <div>
               <Image
                 className="inline-block h-9 w-9 rounded-full"
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                src={data?.user.image ?? ''}
                 alt=""
                 width={20}
                 height={20}
@@ -132,14 +133,14 @@ export default function Sidebar() {
             </div>
             <div className="ml-3">
               <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
-                Tom Cook
+                {data?.user.name}
               </p>
               <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-                View profile
+                {data?.user.email}
               </p>
             </div>
             <p
-              className="ml-16 hover:cursor-pointer hover:opacity-75 font-semibold"
+              className="lg:ml-8 hover:cursor-pointer hover:opacity-75 font-semibold"
               onClick={() => signOut({ callbackUrl: '/' })}
             >
               Logout
