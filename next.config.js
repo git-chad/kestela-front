@@ -2,21 +2,21 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    BACK_URL: process.env.BACK_URL
+    BACK_URL: process.env.BACK_URL,
   },
   // experimental: {
   //   scrollRestoration: true,
   // },
-  images: {  
+  images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.unsplash.com',
+        hostname: 'ui-avatars.com',
         port: '',
         pathname: '/**',
       },
     ],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
