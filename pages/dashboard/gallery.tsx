@@ -6,8 +6,9 @@ import imgSamplePL from '@/images/screenshots/sampleP&L.png';
 const products = [
   {
     id: 1,
-    name: 'Name of tempalte',
-    color: 'A few description of the template',
+    name: 'P&L Template',
+    color:
+      'Track your business`s financial performance with the Kestela P&L template for Google Sheets. Get instant insights into your profit and loss, and make informed decisions about your business`s future',
     href: 'https://docs.google.com/spreadsheets/d/165ZQjRDegYgSONV-Xup_Y3fTBYoJhIoiV9G0S6FTsI8/copy',
     imageSrc: imgSamplePL,
     imageAlt:
@@ -16,28 +17,9 @@ const products = [
   },
   {
     id: 2,
-    name: 'Name of tempalte',
-    color: 'A few description of the template',
-    href: 'https://docs.google.com/spreadsheets/d/165ZQjRDegYgSONV-Xup_Y3fTBYoJhIoiV9G0S6FTsI8/copy',
-    imageSrc: imgSamplePL,
-    imageAlt:
-      'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-    price: '',
-  },
-  {
-    id: 3,
-    name: 'Name of tempalte',
-    color: 'A few description of the template',
-    href: 'https://docs.google.com/spreadsheets/d/165ZQjRDegYgSONV-Xup_Y3fTBYoJhIoiV9G0S6FTsI8/copy',
-    imageSrc: imgSamplePL,
-    imageAlt:
-      'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-    price: '',
-  },
-  {
-    id: 4,
-    name: 'Name of tempalte',
-    color: 'A few description of the template',
+    name: 'Cash Flow Template',
+    color:
+      'Track your business`s financial performance with the Kestela P&L template for Google Sheets. Get instant insights into your profit and loss, and make informed decisions about your business`s future',
     href: 'https://docs.google.com/spreadsheets/d/165ZQjRDegYgSONV-Xup_Y3fTBYoJhIoiV9G0S6FTsI8/copy',
     imageSrc: imgSamplePL,
     imageAlt:
@@ -90,7 +72,7 @@ export default function Example() {
                     alt="google drive"
                     unoptimized
                   />
-                  Add to my google drive <span className="sr-only">, {product.name}</span>
+                  Add to my Google Drive <span className="sr-only">, {product.name}</span>
                 </a>
               </div>
             </div>

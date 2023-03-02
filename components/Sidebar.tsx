@@ -19,7 +19,7 @@ const navigation = [
     href: '/dashboard/integrations',
     count: 1,
   },
-  { name: 'Links', icon: LinkIcon, href: '#', count: 4 },
+  { name: 'Gallery', icon: LinkIcon, href: '/dashboard/gallery', count: 4 },
   { name: 'Documents', icon: InboxIcon, href: '#', count: 12 },
   { name: 'Profile', icon: UsersIcon, href: '/dashboard/profile' },
   { name: 'Reports', icon: ChartBarIcon, href: '#' },
