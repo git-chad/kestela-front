@@ -15,6 +15,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.pngkey.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };
