@@ -8,7 +8,7 @@ const products = [
     id: 1,
     name: 'Name of tempalte',
     color: 'A few description of the template',
-    href: '#',
+    href: 'https://docs.google.com/spreadsheets/d/165ZQjRDegYgSONV-Xup_Y3fTBYoJhIoiV9G0S6FTsI8/copy',
     imageSrc: imgSamplePL,
     imageAlt:
       'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
@@ -18,7 +18,7 @@ const products = [
     id: 2,
     name: 'Name of tempalte',
     color: 'A few description of the template',
-    href: '#',
+    href: 'https://docs.google.com/spreadsheets/d/165ZQjRDegYgSONV-Xup_Y3fTBYoJhIoiV9G0S6FTsI8/copy',
     imageSrc: imgSamplePL,
     imageAlt:
       'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
@@ -28,7 +28,7 @@ const products = [
     id: 3,
     name: 'Name of tempalte',
     color: 'A few description of the template',
-    href: '#',
+    href: 'https://docs.google.com/spreadsheets/d/165ZQjRDegYgSONV-Xup_Y3fTBYoJhIoiV9G0S6FTsI8/copy',
     imageSrc: imgSamplePL,
     imageAlt:
       'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
@@ -38,7 +38,7 @@ const products = [
     id: 4,
     name: 'Name of tempalte',
     color: 'A few description of the template',
-    href: '#',
+    href: 'https://docs.google.com/spreadsheets/d/165ZQjRDegYgSONV-Xup_Y3fTBYoJhIoiV9G0S6FTsI8/copy',
     imageSrc: imgSamplePL,
     imageAlt:
       'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
@@ -80,6 +80,7 @@ export default function Example() {
               <div className="mt-6">
                 <a
                   href={product.href}
+                  target="_blank"
                   className="relative flex items-center justify-center rounded-md border border-transparent bg-gray-100 py-2 px-8 text-sm font-medium text-gray-900 hover:bg-gray-200"
                 >
                   <Image

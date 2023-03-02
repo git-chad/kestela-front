@@ -1,59 +1,76 @@
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
-import ToggleLabel from '@/components/ToggleLabel'
-
+import ToggleLabel from '@/components/ToggleLabel';
 
 export default function Integrations() {
-  const [enabled, setEnabled] = useState(false)
+  const [enabled, setEnabled] = useState(false);
   // const [open, setOpen] = useState(false)
-  const router = useRouter()
+  const router = useRouter();
 
   const getAuthUrl = async (e: boolean) => {
-    if(e) {
+    if (e) {
       try {
-        setEnabled(true)
-        let res = await fetch(`${process.env.BACK_URL}/v1/quickbooks/authUri`, {
+        setEnabled(true);
+        let res = (await fetch(`${process.env.BACK_URL}/v1/quickbooks/authUri`, {
           method: 'GET',
-          headers: { "Content-Type": "application/json" }
-        }) as any
-        res = await res.json()
-        window.location.href = res.authUri
-      } catch(error) {
-        console.log("Error: ", error)
+          headers: { 'Content-Type': 'application/json' },
+        })) as any;
+        res = await res.json();
+        window.location.href = res.authUri;
+      } catch (error) {
+        console.log('Error: ', error);
       }
     } else {
-      setEnabled(false)
+      setEnabled(false);
     }
-  }
+  };
 
   const getQuickbooksToken = async (code: any, state: any, realmId: any) => {
-    let res = await fetch(`${process.env.BACK_URL}/v1/quickbooks/integrations?code=${code}&state=${state}&realmId=${realmId}`)
-    res = await res.json()
-    console.log("Response Token :", res)
-    let companyInfo = await fetch(`${process.env.BACK_URL}/v1/quickbooks/getCompanyInfo`)
-    companyInfo = await companyInfo.json()
-    console.log("Company Info :", companyInfo)
+    let tokenResponse = await fetch(
+      `${process.env.BACK_URL}/v1/quickbooks/integrations?code=${code}&state=${state}&realmId=${realmId}`
+    );
+    tokenResponse = await tokenResponse.json();
+    console.log('Response Token :', tokenResponse);
 
-    const { access_token, refresh_token } = res as any
+    let companyInfo = await fetch(`${process.env.BACK_URL}/v1/quickbooks/getCompanyInfo`);
+    companyInfo = await companyInfo.json();
+    console.log('Company Info :', companyInfo);
 
-    let getAccounts = await fetch(`${process.env.BACK_URL}/v1/api-quickbooks/getAccounts`, {
-      method: 'POST',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ access_token, refresh_token, realmId })
-    })
+    setEnabled(true);
 
-    getAccounts = await getAccounts.json()
+    setTimeout(() => {
+      router.push('/dashboard/gallery');
+    }, 2000);
+    // const { access_token, refresh_token } = tokenResponse as any;
 
-    console.log(getAccounts)
-  }
+    // let getAccounts = await fetch(
+    //   `${process.env.BACK_URL}/v1/api-quickbooks/getAccounts`,
+    //   {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({ access_token, refresh_token, realmId }),
+    //   }
+    // );
+
+    // getAccounts = await getAccounts.json();
+
+    // console.log(getAccounts);
+  };
 
   useEffect(() => {
-    const { code, state, realmId } = router.query
+    const { code, state, realmId } = router.query;
+
     if (code && state && realmId) {
-      getQuickbooksToken(code, state, realmId)
+      getQuickbooksToken(code, state, realmId);
+      window.history.replaceState(null, '', '/dashboard/integrations');
+      // const { pathname, query } = router
+      // delete router.query.code
+      // delete router.query.state
+      // delete router.query.realmId
+      // router.replace({ pathname, query }, undefined, { shallow: true })
     }
-  }, [router])
+  }, [router]);
 
   return (
     <div className="mx-auto my-20 max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -66,5 +83,5 @@ export default function Integrations() {
         />
       </div>
     </div>
-  )
+  );
 }
