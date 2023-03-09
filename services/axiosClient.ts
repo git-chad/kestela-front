@@ -1,35 +1,28 @@
-import axios, { CreateAxiosDefaults, InternalAxiosRequestConfig } from 'axios';
+import axios from 'axios';
+import { getSession } from 'next-auth/react';
 
-interface Props {
-  options: CreateAxiosDefaults;
-  getCurrentAccessToken: () => string;
-  getCurrentRefreshToken: () => string;
-  refreshTokenUrl: string;
-  logout: () => void;
-  setRefreshedToken: () => void;
-}
-
-export function createAxiosClient({
-  options,
-  getCurrentAccessToken,
-  getCurrentRefreshToken,
-  refreshTokenUrl,
-  logout,
-  setRefreshedToken,
-}: Props) {
-  const client = axios.create(options);
-  client.interceptors.request.use(
-    (config) => {
-      const token = getCurrentAccessToken();
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
+export function ApiClient() {
+  const instance = axios.create();
+  instance.interceptors.request.use(
+    async (request) => {
+      const session = await getSession();
+      console.log('Session: ', session);
+      if (session) {
+        request.headers.Authorization = `bearer ${session.access_token}`;
       }
-      return config;
+      return request;
     },
     (error) => {
-      return Promise.reject(error);
+      throw error;
+    }
+  );
+  instance.interceptors.response.use(
+    (response) => response,
+    (error) => {
+      console.log('Interceptor response error: ', error);
+      throw error;
     }
   );
 
-  return client;
+  return instance;
 }

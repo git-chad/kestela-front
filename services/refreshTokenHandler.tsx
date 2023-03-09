@@ -1,7 +1,7 @@
 import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 
-export const refreshTokenHandler = (props: { setInterval: (a: number) => void }) => {
+export function RefreshTokenHandler(props: { setInterval: (a: number) => void }) {
   const { data: session } = useSession() as any;
 
   useEffect(() => {
@@ -11,4 +11,6 @@ export const refreshTokenHandler = (props: { setInterval: (a: number) => void })
     );
     props.setInterval(timeRemaining > 0 ? timeRemaining : 0);
   }, [session]);
-};
+
+  return null;
+}

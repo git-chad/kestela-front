@@ -3,21 +3,52 @@ import { useRouter } from 'next/router';
 
 import ToggleLabel from '@/components/ToggleLabel';
 import Image from 'next/image';
+import { useSession } from 'next-auth/react';
+
+import StackedList from '@/components/StackedList';
+
+import {
+  getQbUri,
+  getQbTooken,
+  getQbCompanyInfo,
+  saveCompanyData,
+  getQbCompany,
+} from '@/services';
+
+function generateCompanyBody(
+  companyInfo: CompanyInfo,
+  tokenObject: QbToken,
+  realmId: string | string[],
+  user_id: string | null | undefined
+): PostCompanyBody {
+  return {
+    company_id: companyInfo.Id,
+    company_name: companyInfo.CompanyName,
+    company_addr: companyInfo.CompanyAddr,
+    country: companyInfo.Country,
+    email: companyInfo.Email?.Address,
+    legal_name: companyInfo.LegalName,
+    legal_addr: companyInfo.LegalAddr,
+    name_value: companyInfo.NameValue,
+    user_id,
+    qb_token: tokenObject,
+    realmId: realmId,
+    is_active: true,
+  };
+}
 
 export default function Integrations() {
   const [enabled, setEnabled] = useState(false);
-  // const [open, setOpen] = useState(false)
+  const [qbCompany, setQbCompany] = useState(null);
+  const { data: session } = useSession();
+
   const router = useRouter();
 
   const getAuthUrl = async (e: boolean) => {
     if (e) {
       try {
         setEnabled(true);
-        let res = (await fetch(`${process.env.BACK_URL}/v1/quickbooks/authUri`, {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
-        })) as any;
-        res = await res.json();
+        const res = await getQbUri();
         window.location.href = res.authUri;
       } catch (error) {
         console.log('Error: ', error);
@@ -27,55 +58,58 @@ export default function Integrations() {
     }
   };
 
-  const getQuickbooksToken = async (code: any, state: any, realmId: any) => {
-    let tokenResponse = await fetch(
-      `${process.env.BACK_URL}/v1/quickbooks/integrations?code=${code}&state=${state}&realmId=${realmId}`
-    );
-    tokenResponse = await tokenResponse.json();
-    console.log('Response Token :', tokenResponse);
+  const getQbTokenAndSave = async (
+    code: string | string[],
+    state: string | string[],
+    realmId: string | string[]
+  ) => {
+    try {
+      const qbToken = await getQbTooken(code, state, realmId);
+      const { CompanyInfo } = await getQbCompanyInfo();
+      const companyBody = generateCompanyBody(
+        CompanyInfo,
+        qbToken,
+        realmId,
+        session?.user.id
+      );
+      const savedResponse = await saveCompanyData(companyBody);
 
-    let companyInfo = await fetch(`${process.env.BACK_URL}/v1/quickbooks/getCompanyInfo`);
-    companyInfo = await companyInfo.json();
-    console.log('Company Info :', companyInfo);
+      console.log('Saved Response: ', savedResponse);
+    } catch (error) {
+      console.log('Error :', error);
+    }
+  };
 
-    setEnabled(true);
-
-    setTimeout(() => {
-      router.push('/dashboard/gallery');
-    }, 2000);
-    // const { access_token, refresh_token } = tokenResponse as any;
-
-    // let getAccounts = await fetch(
-    //   `${process.env.BACK_URL}/v1/api-quickbooks/getAccounts`,
-    //   {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ access_token, refresh_token, realmId }),
-    //   }
-    // );
-
-    // getAccounts = await getAccounts.json();
-
-    // console.log(getAccounts);
+  const getMyQbCompany = async (user_id: string | null | undefined) => {
+    try {
+      const company = await getQbCompany(user_id);
+      setQbCompany(company);
+      console.log('Compan: ', company);
+      setEnabled(true);
+    } catch (error) {
+      console.log('Error: ', error);
+      alert({ error });
+    }
   };
 
   useEffect(() => {
     const { code, state, realmId } = router.query;
-
-    if (code && state && realmId) {
-      getQuickbooksToken(code, state, realmId);
-      window.history.replaceState(null, '', '/dashboard/integrations');
-      // const { pathname, query } = router
-      // delete router.query.code
-      // delete router.query.state
-      // delete router.query.realmId
-      // router.replace({ pathname, query }, undefined, { shallow: true })
+    if (session && code && state && realmId) {
+      getQbTokenAndSave(code, state, realmId);
+      // window.history.replaceState(null, '', '/dashboard/integrations');
     }
-  }, [router]);
+  }, [router, session]);
+
+  useEffect(() => {
+    const { code, state, realmId } = router.query;
+    if (session && !code && !state && !realmId) {
+      getMyQbCompany(session.user.id);
+    }
+  }, [session]);
 
   return (
     <div className="mx-auto my-20 max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-7xl">
         <Image
           src="https://www.pngkey.com/png/full/129-1296317_quickbooks-logo-quickbooks-logo.png"
           width={40}
@@ -88,6 +122,8 @@ export default function Integrations() {
           title="Enable your Quickbooks Integration"
           description="Pull all your reports from your Quickbooks account directly to your spreadsheets"
         />
+        <br />
+        <StackedList />
       </div>
     </div>
   );
