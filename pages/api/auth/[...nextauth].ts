@@ -10,13 +10,14 @@ async function refreshAccessToken(objectToken: JWT) {
     const { data } = await axios.post(`${process.env.BACK_URL}/v1/auth/refreshToken`, {
       refresh_token: objectToken.refresh_token,
     });
-
+    console.log("In Data: ", data)
     return {
       ...objectToken,
       access_token: data.access_token,
       refresh_token: data.refresh_token,
     };
-  } catch (error) {
+  } catch (error: any) {
+    // console.log("OBJECT TOKEN ERROR: ", error)
     return {
       ...objectToken,
       error: 'RefreshAccessTokenError' as const,
@@ -28,7 +29,7 @@ const authOptions: AuthOptions = {
   session: {
     strategy: 'jwt',
     // maxAge: 30 * 24 * 60 * 60, // 30 days
-    maxAge: 8 * 60 * 60, // 8 hrs
+    // maxAge: 1 * 8 * 60 * 60, // 8 hrs
   },
   providers: [
     CredentialsProvider({
@@ -37,7 +38,7 @@ const authOptions: AuthOptions = {
         email: { label: 'Email', type: 'text', placeholder: 'jsmith' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials, _req) {
         try {
           const res = await fetch(`${process.env.BACK_URL}/v1/users/login`, {
             method: 'POST',
@@ -77,20 +78,19 @@ const authOptions: AuthOptions = {
           `https://ui-avatars.com/api/?name=${
             user.firstname + '+' + user.lastname
           }&background=0D8ABC&color=fff`;
+        
+        return token
       }
+      // console.log("Token: ", token)
 
-      // If accessTokenExpiry is 24 hours, we have to refresh token before 24 hours pass.
-      const shouldRefreshTime = Math.round(
-        token.expires_at - 60 * 60 * 1000 - Date.now()
-      );
-
-      // If the token is still valid, just return it.
-      if (shouldRefreshTime > 0) {
-        return token;
-      }
+      // if (token.exp &&  token.iat) {
+      //   let result = token.exp - token.iat
+      //   result = (result - 30 * 60 * 1000) - Date.now()
+      //   console.log("Segundos: ", Math.floor(result / 1000))
+      // }
 
       // If the call arrives after 23 hours have passed, we allow to refresh the token.
-      token = await refreshAccessToken(token);
+      // token = await refreshAccessToken(token);
       return token;
     },
     async session({ session, token }) {
@@ -130,7 +130,8 @@ declare module 'next-auth' {
 declare module 'next-auth/jwt' {
   interface DefaultJWT {
     access_token: string;
-    expires_at: number;
+    exp: number;
+    iat: number;
     refresh_token: string;
     error?: 'RefreshAccessTokenError';
   }

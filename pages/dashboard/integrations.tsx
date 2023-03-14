@@ -83,12 +83,13 @@ export default function Integrations() {
   const getMyQbCompany = async (user_id: string | null | undefined) => {
     try {
       const company = await getQbCompany(user_id);
-      setQbCompany(company);
-      console.log('Compan: ', company);
-      setEnabled(true);
+      if(company) {
+        setQbCompany(company);
+        setEnabled(true);
+        console.log('Compan: ', company);
+      }
     } catch (error) {
       console.log('Error: ', error);
-      alert({ error });
     }
   };
 
@@ -123,7 +124,9 @@ export default function Integrations() {
           description="Pull all your reports from your Quickbooks account directly to your spreadsheets"
         />
         <br />
-        <StackedList />
+        {qbCompany && 
+          <StackedList />
+        }
       </div>
     </div>
   );
