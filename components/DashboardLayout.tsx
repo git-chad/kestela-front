@@ -21,7 +21,7 @@ export default function DashboardLayout({
   return (
     <div className="grid grid-cols-6 grid-rows-1 min-h-screen max-h-screen">
       <Sidebar />
-      <div className="col-span-5 p-4">{children}</div>
+      <div className="col-span-5 p-4 overflow-x-auto">{children}</div>
     </div>
   );
 }

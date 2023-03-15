@@ -13,6 +13,7 @@ import {
   getQbCompanyInfo,
   saveCompanyData,
   getQbCompany,
+  setPnL,
 } from '@/services';
 
 function generateCompanyBody(
@@ -74,19 +75,24 @@ export default function Integrations() {
       );
       const savedResponse = await saveCompanyData(companyBody);
 
-      console.log('Saved Response: ', savedResponse);
+      if (savedResponse) {
+        getMyQbCompany(session?.user.id)
+        setTimeout(() => { router.push("/dashboard/gallery") }, 2000)
+      }
+      
     } catch (error) {
       console.log('Error :', error);
     }
   };
 
-  const getMyQbCompany = async (user_id: string | null | undefined) => {
+  const getMyQbCompany = async (user_id: any) => {
     try {
       const company = await getQbCompany(user_id);
       if(company) {
-        setQbCompany(company);
         setEnabled(true);
-        console.log('Compan: ', company);
+        const result = await setPnL(user_id, company.company_id)
+        console.log("result PNL: ", result)
+        setQbCompany(company);
       }
     } catch (error) {
       console.log('Error: ', error);
@@ -110,24 +116,26 @@ export default function Integrations() {
 
   return (
     <div className="mx-auto my-20 max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-5xl">
         <Image
           src="https://www.pngkey.com/png/full/129-1296317_quickbooks-logo-quickbooks-logo.png"
           width={40}
           height={40}
           alt={''}
         />
+        <br />
         <ToggleLabel
           checked={enabled}
           onChange={getAuthUrl}
           title="Enable your Quickbooks Integration"
           description="Pull all your reports from your Quickbooks account directly to your spreadsheets"
         />
-        <br />
-        {qbCompany && 
-          <StackedList />
-        }
       </div>
+      {qbCompany && 
+        <div className="mx-auto my-8 max-w-5xl">
+          <StackedList companies={[qbCompany]} />
+        </div>
+      }
     </div>
   );
 }

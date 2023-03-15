@@ -9,7 +9,7 @@ const products = [
     name: 'P&L Template',
     color:
       'Track your business`s financial performance with the Kestela P&L template for Google Sheets. Get instant insights into your profit and loss, and make informed decisions about your business`s future',
-    href: 'https://docs.google.com/spreadsheets/d/165ZQjRDegYgSONV-Xup_Y3fTBYoJhIoiV9G0S6FTsI8/copy',
+    href: 'https://script.google.com/macros/s/AKfycbytbDGJDh1AffCTML8EwOnrIHHL0lvF1a6v3hdgUTbuCaKlzgljJYOZh-iOsg-x2GQadA/exec?id=165ZQjRDegYgSONV-Xup_Y3fTBYoJhIoiV9G0S6FTsI8',
     imageSrc: imgSamplePL,
     imageAlt:
       'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',

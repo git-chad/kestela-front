@@ -34,5 +34,12 @@ export async function saveCompanyData(body: PostCompanyBody) {
 export async function getQbCompany(user_id: string | null | undefined) {
   const url = '/v1/quickbooks/company/' + user_id;
   const response = await axios.get(url);
+  console.log(response)
+  return response?.data;
+}
+
+export async function setPnL(user_id: string, company_id: string) {
+  const url = '/v1/quickbooks/setProfitAndLoss';
+  const response = await axios.post(url, { user_id, company_id });
   return response?.data;
 }
