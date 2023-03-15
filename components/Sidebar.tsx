@@ -141,7 +141,7 @@ export default function Sidebar() {
             </div>
             <p
               className="lg:ml-8 hover:cursor-pointer hover:opacity-75 font-semibold"
-              onClick={() => signOut({ callbackUrl: '/' })}
+              onClick={() => signOut({ callbackUrl: `https://${process.env.VERCEL_URL}` })}
             >
               Logout
             </p>
