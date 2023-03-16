@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 
 import ToggleLabel from '@/components/ToggleLabel';
-import Image from 'next/image';
-import { useSession } from 'next-auth/react';
-
 import StackedList from '@/components/StackedList';
+import { Spinner } from '@/components/Spinner';
 
 import {
   getQbUri,
@@ -41,6 +41,7 @@ function generateCompanyBody(
 export default function Integrations() {
   const [enabled, setEnabled] = useState(false);
   const [qbCompany, setQbCompany] = useState(null);
+  const [isLoading, setIsLoading] = useState(true)
   const { data: session } = useSession();
 
   const router = useRouter();
@@ -65,6 +66,7 @@ export default function Integrations() {
     realmId: string | string[]
   ) => {
     try {
+      setIsLoading(true)
       const qbToken = await getQbTooken(code, state, realmId);
       const { CompanyInfo } = await getQbCompanyInfo();
       const companyBody = generateCompanyBody(
@@ -80,6 +82,7 @@ export default function Integrations() {
         setEnabled(true);
         const result = await setPnL(session?.user.id, company.company_id)
         setQbCompany(company);
+        setIsLoading(false)
       }
       
     } catch (error) {
@@ -93,8 +96,10 @@ export default function Integrations() {
       if(company) {
         setEnabled(true);
         setQbCompany(company);
+        setIsLoading(false)
       }
     } catch (error) {
+      setIsLoading(false)
       console.log('Error: ', error);
     }
   };
@@ -113,6 +118,8 @@ export default function Integrations() {
       getMyQbCompany(session.user.id);
     }
   }, [session]);
+
+  if (isLoading) return <Spinner />
 
   return (
     <div className="mx-auto my-20 max-w-7xl px-4 sm:px-6 lg:px-8">

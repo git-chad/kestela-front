@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 
 import TableEdit from "@/components/TableEdit"
+import { Spinner } from "@/components/Spinner"
 import { getPnL } from "@/services"
 import { useSession } from "next-auth/react"
 
@@ -27,7 +28,7 @@ export default function EditFields() {
     <div className="mx-auto my-20 max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {!pnl 
-          ? <div>...loading</div>
+          ? <Spinner />
           : <TableEdit pnls={pnl} />
         }   
       </div>
