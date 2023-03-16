@@ -53,7 +53,7 @@ export default function Example({ pnls }: any) {
             </tr>
           </thead>
           <tbody>
-            {pnls.map((pnl, planIdx) => (
+            {pnls.map((pnl: any, planIdx: number) => (
               <tr key={pnl.name}>
                 <td
                   className={classNames(
