@@ -76,7 +76,10 @@ export default function Integrations() {
       const savedResponse = await saveCompanyData(companyBody);
 
       if (savedResponse) {
-        getMyQbCompany(session?.user.id)
+        const company = await getQbCompany(session?.user.id)
+        setEnabled(true);
+        const result = await setPnL(session?.user.id, company.company_id)
+        setQbCompany(company);
       }
       
     } catch (error) {
@@ -89,7 +92,6 @@ export default function Integrations() {
       const company = await getQbCompany(user_id);
       if(company) {
         setEnabled(true);
-        const result = await setPnL(user_id, company.company_id)
         setQbCompany(company);
       }
     } catch (error) {

@@ -1,41 +1,16 @@
 import { Switch } from '@headlessui/react'
-import { useState } from 'react'
-
-const plansList = [
-  {
-    id: 1,
-    name: 'Hobby',
-    memory: '4 GB RAM',
-    cpu: '4 CPUs',
-    storage: '128 GB SSD disk',
-    price: '$40',
-    isCurrent: false,
-  },
-  {
-    id: 2,
-    name: 'Startup',
-    memory: '8 GB RAM',
-    cpu: '6 CPUs',
-    storage: '256 GB SSD disk',
-    price: '$80',
-    isCurrent: true,
-  },
-  // More plans...
-]
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
-  const [plans, setPlans] = useState(plansList)
-
+export default function Example({ pnls }: any) {
 
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
-          <h1 className="text-base font-semibold leading-6 text-gray-900">Mapping</h1>
+          <h1 className="text-base font-semibold leading-6 text-gray-900">Mapping of the P&L</h1>
           <p className="mt-2 text-sm text-gray-700">
             Choose the accounts you want to integrate into the template. You can also assign them a custom name
           </p>
@@ -78,8 +53,8 @@ export default function Example() {
             </tr>
           </thead>
           <tbody>
-            {plans.map((plan, planIdx) => (
-              <tr key={plan.id}>
+            {pnls.map((pnl, planIdx) => (
+              <tr key={pnl.name}>
                 <td
                   className={classNames(
                     planIdx === 0 ? '' : 'border-t border-transparent',
@@ -87,16 +62,16 @@ export default function Example() {
                   )}
                 >
                   <div className="font-medium text-gray-900">
-                    {plan.name}
+                    {pnl.name}
                     {/* {plan.isCurrent ? <span className="ml-1 text-indigo-600">(Current Plan)</span> : null} */}
                   </div>
-                  <div className="mt-1 flex flex-col text-gray-500 sm:block lg:hidden">
+                  {/* <div className="mt-1 flex flex-col text-gray-500 sm:block lg:hidden">
                     <span>
                       {plan.memory} / {plan.cpu}
                     </span>
                     <span className="hidden sm:inline">·</span>
                     <span>{plan.storage}</span>
-                  </div>
+                  </div> */}
                   {planIdx !== 0 ? <div className="absolute right-0 left-6 -top-px h-px bg-gray-200" /> : null}
                 </td>
                 <td
@@ -105,7 +80,7 @@ export default function Example() {
                     'hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell'
                   )}
                 >
-                  {plan.memory}
+                  {pnl.group}
                 </td>
                 <td
                   className={classNames(
@@ -114,17 +89,17 @@ export default function Example() {
                   )}
                 >
                   <Switch
-                    checked={plan.isCurrent}
+                    checked={false}
                     onChange={() => {}}
                     className={classNames(
-                      plan.isCurrent ? 'bg-indigo-600' : 'bg-gray-200',
+                      false ? 'bg-indigo-600' : 'bg-gray-200',
                       'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                     )}
                   >
                     <span
                       aria-hidden="true"
                       className={classNames(
-                        plan.isCurrent ? 'translate-x-5' : 'translate-x-0',
+                        false ? 'translate-x-5' : 'translate-x-0',
                         'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                       )}
                     />
