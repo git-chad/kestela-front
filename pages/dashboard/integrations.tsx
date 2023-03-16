@@ -96,8 +96,8 @@ export default function Integrations() {
       if(company) {
         setEnabled(true);
         setQbCompany(company);
-        setIsLoading(false)
       }
+      setIsLoading(false)
     } catch (error) {
       setIsLoading(false)
       console.log('Error: ', error);

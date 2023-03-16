@@ -13,7 +13,7 @@ import { AuthLayout } from "@/components/AuthLayout";
 import { Button } from "@/components/Button";
 import { TextField } from "@/components/Fields";
 import { Logo } from "@/components/Logo";
-import { Spinner } from "@/components/Spinner";
+import { MiniSpinner } from "@/components/MiniSpinner";
 import { loginSchema } from "@/schemas/login-yup-schema";
 
 interface IFormInput {
@@ -105,7 +105,7 @@ const Login = () => {
               }`}
               disabled={isSubmitting}
             >
-              {isSubmitting && <Spinner />}
+              {isSubmitting && <MiniSpinner />}
               <span>
                 Sign in <span aria-hidden="true">&rarr;</span>
               </span>

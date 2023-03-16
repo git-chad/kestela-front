@@ -10,7 +10,7 @@ import { AuthLayout } from '@/components/AuthLayout'
 import { Button } from '@/components/Button'
 import { SelectField, TextField } from '@/components/Fields'
 import { Logo } from '@/components/Logo'
-import { Spinner } from "@/components/Spinner"
+import { MiniSpinner } from "@/components/MiniSpinner"
 
 import { registerSchema } from "@/schemas/register-yup-schema"
 
@@ -118,7 +118,7 @@ export default function Register() {
               className={`w-full ${isSubmitting ? 'disabled:opacity-70' : 'active:bg-blue-800 active:text-blue-100'}`}
               disabled={isSubmitting}
             >
-              {isSubmitting && <Spinner />}
+              {isSubmitting && <MiniSpinner />}
               <span>
                 Sign up <span aria-hidden="true">&rarr;</span>
               </span>
