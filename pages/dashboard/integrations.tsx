@@ -77,7 +77,6 @@ export default function Integrations() {
 
       if (savedResponse) {
         getMyQbCompany(session?.user.id)
-        setTimeout(() => { router.push("/dashboard/gallery") }, 2000)
       }
       
     } catch (error) {
@@ -91,7 +90,6 @@ export default function Integrations() {
       if(company) {
         setEnabled(true);
         const result = await setPnL(user_id, company.company_id)
-        console.log("result PNL: ", result)
         setQbCompany(company);
       }
     } catch (error) {
