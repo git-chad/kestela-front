@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useSession } from 'next-auth/react';
+import { useSession, getSession } from 'next-auth/react';
 import Image from 'next/image';
 
 import ToggleLabel from '@/components/ToggleLabel';
@@ -15,6 +15,8 @@ import {
   getQbCompany,
   setPnL,
 } from '@/services';
+import { GetServerSidePropsContext } from 'next';
+import { Props } from '@headlessui/react/dist/types';
 
 function generateCompanyBody(
   companyInfo: CompanyInfo,
@@ -38,13 +40,15 @@ function generateCompanyBody(
   };
 }
 
-export default function Integrations() {
+export default function Integrations(props: Props<any>) {
   const [enabled, setEnabled] = useState(false);
   const [qbCompany, setQbCompany] = useState(null);
   const [isLoading, setIsLoading] = useState(true)
   const { data: session } = useSession();
 
   const router = useRouter();
+
+  console.log("Props: ", props)
 
   const getAuthUrl = async (e: boolean) => {
     if (e) {
@@ -145,4 +149,15 @@ export default function Integrations() {
       }
     </div>
   );
+}
+
+export async function getServerSideProps({ req }: GetServerSidePropsContext) {
+  const session = await getSession({ req })
+  console.log("SesionSSR: ", session)
+  // const qbCompany = await getQbCompany(session?.user.id);
+  return {
+    props: {
+      // qbCompany
+    }
+  }
 }

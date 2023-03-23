@@ -14,13 +14,14 @@ export function ApiClient(baseURL: string) {
       return request;
     },
     (error) => {
+      console.log('Request error in interceptor: ', error);
       throw error;
     }
   );
   instance.interceptors.response.use(
     (response) => response,
     (error) => {
-      console.log('Interceptor response error: ', error);
+      console.log('Response error in interceptor: ', error);
       throw error;
     }
   );

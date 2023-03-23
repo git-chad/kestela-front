@@ -6,8 +6,20 @@ import { getPnL } from "@/services"
 import { useSession } from "next-auth/react"
 
 export default function EditFields() {
-  const [pnl, setPnl ] = useState()
+  const [pnl, setPnl ] = useState([]) as any
   const { data: session } = useSession()
+
+  const handleChange = (position:any) => {
+    const element = pnl[position] as any;
+    element.isIncluded = !pnl[position].isIncluded
+    setPnl((oldState: any) => {
+      return [
+        ...oldState.slice(0,position),
+        element,
+        ...oldState.slice(position+1),
+      ]
+    })
+  }
 
   const handleFetchPnl = async (user_id: any) => {
     try {
@@ -22,14 +34,14 @@ export default function EditFields() {
     if (session) {
       handleFetchPnl(session?.user.id)
     }
-  }, [session])
+  }, [])
 
   return (
     <div className="mx-auto my-20 max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {!pnl 
           ? <Spinner />
-          : <TableEdit pnls={pnl} />
+          : <TableEdit pnls={pnl} handleChange={handleChange} />
         }   
       </div>
     </div>
@@ -54,7 +66,9 @@ function extractAccounts(json: any) {
           if (accountName !== group) {
             let account = {
               name: accountName,
-              group: group || null
+              group: group || null,
+              isIncluded: true,
+              nameOnTemplate: ''
             };
             accounts.push(account);
           }
@@ -65,7 +79,9 @@ function extractAccounts(json: any) {
           if (headerAccountName && headerAccountName !== currentGroup) {
             accounts.push({
               name: headerAccountName,
-              group: currentGroup || null
+              group: currentGroup || null,
+              isIncluded: true,
+              nameOnTemplate: ''
             });
           }
 
@@ -77,7 +93,9 @@ function extractAccounts(json: any) {
             if (summaryAccountName !== currentGroup) {
               let summaryAccount = {
                 name: summaryAccountName,
-                group: currentGroup || null
+                group: currentGroup || null,
+                isIncluded: true,
+                nameOnTemplate: ''
               };
               accounts.push(summaryAccount);
             }
@@ -88,5 +106,6 @@ function extractAccounts(json: any) {
   }
 
   parseRows(json.rows, '');
+  console.log("Accounts: ", accounts)
   return accounts;
 }
