@@ -1,6 +1,9 @@
+import Image from 'next/image'
+import logo from '@/images/logos/kestela_logo.png'
+
 export function Logo(props) {
   return (
-    <h1 {...props}>Kestela Platform</h1>
+    <Image  width={props.width || 200} className="mr-3" src={logo} alt="kestela" unoptimized />
     // <svg aria-hidden="true" viewBox="0 0 109 40" {...props}>
     //   <path
     //     fillRule="evenodd"

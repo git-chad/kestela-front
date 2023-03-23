@@ -1,5 +1,7 @@
 import NextAuth, { Account, DefaultUser, Session, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import GoogleProvider from "next-auth/providers/google";
+
 import axios from 'axios';
 
 import type { AuthOptions } from 'next-auth';
@@ -32,6 +34,11 @@ const authOptions: AuthOptions = {
     maxAge: 1 * 8 * 60 * 60, // 8 hrs
   },
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
+    }),
+    
     CredentialsProvider({
       name: 'credentials',
       credentials: {
@@ -99,6 +106,12 @@ const authOptions: AuthOptions = {
       session.user.id = token.sub;
       session.error = token.error;
       return session;
+    },
+    async signIn({ account, profile }: any) {
+      if (account.provider === "google") {
+        return profile.email_verified && (profile.email.endsWith("@gmail.com") || profile.email.endsWith("@setandforget.io"))
+      }
+      return true // Do different verification for other providers that don't have `email_verified`
     },
   },
 };

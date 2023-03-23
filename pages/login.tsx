@@ -1,5 +1,6 @@
 import { GetServerSideProps } from "next";
 import { useRef, useState } from "react";
+import Image from 'next/image';
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
@@ -15,6 +16,7 @@ import { TextField } from "@/components/Fields";
 import { Logo } from "@/components/Logo";
 import { MiniSpinner } from "@/components/MiniSpinner";
 import { loginSchema } from "@/schemas/login-yup-schema";
+import logoGoogle from '@/images/logos/google.svg'
 
 interface IFormInput {
   email: string;
@@ -110,6 +112,18 @@ const Login = () => {
                 Sign in <span aria-hidden="true">&rarr;</span>
               </span>
             </Button>
+          </div>
+          <div className="flex items-center justify-center">
+          <button onClick={() => signIn('google')} className="flex items-center p-4 bg-white hover:bg-gray-50 border rounded-lg transition ease-in-out duration-200">
+                <Image
+                    width={20}
+                    className="mr-3"
+                    src={logoGoogle}
+                    alt="google"
+                    unoptimized
+                  />
+                <span className="font-semibold leading-normal">Sign up with Google</span>
+            </button>
           </div>
         </form>
         <div className="mt-2 p-4">

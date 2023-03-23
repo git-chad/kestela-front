@@ -9,7 +9,9 @@ export function Footer() {
     <footer className="bg-slate-50">
       <Container>
         <div className="py-16">
-          <Logo className="mx-auto w-[210px] font-bold text-2xl p-2 rounded-md bg-black text-white" />
+          <div className='flex justify-center'>
+            <Logo className="mx-auto w-[210px] font-bold text-2xl p-2 rounded-md bg-black text-white" />
+          </div>
           <nav className="mt-10 text-sm" aria-label="quick links">
             <div className="-my-1 flex justify-center gap-x-6">
               <NavLink href="#features">Features</NavLink>
