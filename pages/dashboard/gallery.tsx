@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import imgGoogleDrive from '@/images/logos/google_drive_icon_2020.svg';
 import imgSamplePL from '@/images/screenshots/sampleP&L.png';
@@ -9,7 +10,7 @@ const products = [
     name: 'P&L Template',
     color:
       'Track your business`s financial performance with the Kestela P&L template for Google Sheets. Get instant insights into your profit and loss, and make informed decisions about your business`s future',
-    href: 'https://script.google.com/macros/s/AKfycbytbDGJDh1AffCTML8EwOnrIHHL0lvF1a6v3hdgUTbuCaKlzgljJYOZh-iOsg-x2GQadA/exec?id=165ZQjRDegYgSONV-Xup_Y3fTBYoJhIoiV9G0S6FTsI8',
+    href: '/dashboard/edit-fields',
     imageSrc: imgSamplePL,
     imageAlt:
       'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
@@ -60,9 +61,8 @@ export default function Example() {
                 </div>
               </div>
               <div className="mt-6">
-                <a
+                <Link
                   href={product.href}
-                  target="_blank"
                   className="relative flex items-center justify-center rounded-md border border-transparent bg-gray-100 py-2 px-8 text-sm font-medium text-gray-900 hover:bg-gray-200"
                 >
                   <Image
@@ -73,7 +73,7 @@ export default function Example() {
                     unoptimized
                   />
                   Add to my Google Drive <span className="sr-only">, {product.name}</span>
-                </a>
+                </Link>
               </div>
             </div>
           ))}

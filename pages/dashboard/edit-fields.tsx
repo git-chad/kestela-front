@@ -21,6 +21,18 @@ export default function EditFields() {
     })
   }
 
+  const handleChangeText = (position: any, event: any) => {
+    const element = pnl[position] as any;
+    element.nameOnTemplate = event.target.value;
+    setPnl((oldState: any) => {
+      return [
+        ...oldState.slice(0,position),
+        element,
+        ...oldState.slice(position+1),
+      ]
+    })
+  }
+
   const handleFetchPnl = async (user_id: any) => {
     try {
       const result = await getPnL(user_id)
@@ -41,7 +53,7 @@ export default function EditFields() {
       <div className="mx-auto max-w-7xl">
         {!pnl 
           ? <Spinner />
-          : <TableEdit pnls={pnl} handleChange={handleChange} />
+          : <TableEdit pnls={pnl} handleChange={handleChange} handleChangeText={handleChangeText} />
         }   
       </div>
     </div>

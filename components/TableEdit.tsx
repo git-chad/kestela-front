@@ -4,7 +4,9 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example({ pnls, handleChange }: any) {
+// https://script.google.com/macros/s/AKfycbytbDGJDh1AffCTML8EwOnrIHHL0lvF1a6v3hdgUTbuCaKlzgljJYOZh-iOsg-x2GQadA/exec?id=165ZQjRDegYgSONV-Xup_Y3fTBYoJhIoiV9G0S6FTsI8
+
+export default function Example({ pnls, handleChange, handleChangeText }: any) {
 
   return (
     <div className="px-4 sm:px-6 lg:px-8">
@@ -116,6 +118,9 @@ export default function Example({ pnls, handleChange }: any) {
                     type="email"
                     name="email"
                     id="email"
+                    value={pnl.nameOnTemplate}
+                    onChange={event => handleChangeText(planIdx, event)}
+                    disabled={!pnl.isIncluded}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     placeholder="you@example.com"
                   />

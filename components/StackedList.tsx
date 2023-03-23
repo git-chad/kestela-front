@@ -8,7 +8,7 @@ export default function StackedList({ companies }:{ companies: any[]}) {
       <ul role="list" className="divide-y divide-gray-200">
         {companies.map((company) => (
           <li key={company.id}>
-            <Link href="/dashboard/edit-fields" className="block hover:bg-gray-50">
+            <Link href="#" className="block hover:bg-gray-50">
               <div className="px-4 py-4 sm:px-6">
                 <div className="flex items-center justify-between">
                   <p className="truncate text-sm font-medium text-indigo-600">
