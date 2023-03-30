@@ -6,6 +6,7 @@ specifiers:
   '@hookform/resolvers': ^2.9.10
   '@next/font': 13.1.5
   '@tailwindcss/forms': ^0.5.3
+  '@typeform/embed-react': ^2.19.0
   '@types/axios': ^0.14.0
   '@types/node': 18.11.18
   '@types/react': 18.0.27
@@ -38,6 +39,7 @@ dependencies:
   '@hookform/resolvers': 2.9.10_react-hook-form@7.43.0
   '@next/font': 13.1.5
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
+  '@typeform/embed-react': 2.19.0_react@18.2.0
   '@types/node': 18.11.18
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
@@ -321,6 +323,22 @@ packages:
     dependencies:
       mini-svg-data-uri: 1.4.4
       tailwindcss: 3.2.4_postcss@8.4.21
+    dev: false
+
+  /@typeform/embed-react/2.19.0_react@18.2.0:
+    resolution: {integrity: sha512-0uA76vltS/Plg7cAuMORTkc6yyG0Q/ZbIh7byjPaxbnypw5u6+J1eGNCCyGcIpe+xR+u6EBb0VuhWdH9YhBYzg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      '@typeform/embed': 2.9.2
+      fast-deep-equal: 3.1.3
+      react: 18.2.0
+    dev: false
+
+  /@typeform/embed/2.9.2:
+    resolution: {integrity: sha512-aCOUXPAwHo6/3AJNl+6aXqkvB+E5V+DqWae4KUYXd27HrqMomUdsp7jK+yGF7RiFP+PfNmWpi9OiKQUC2SBa8g==}
+    engines: {node: '>=10'}
     dev: false
 
   /@types/axios/0.14.0:
@@ -1243,7 +1261,6 @@ packages:
 
   /fast-deep-equal/3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
-    dev: true
 
   /fast-diff/1.2.0:
     resolution: {integrity: sha512-xJuoT5+L99XlZ8twedaRf6Ax2TgQVxvgZOYoPKqZufmJib0tL2tegPBOZb1pVNgIhlqDlA0eO0c3wBvQcmzx4w==}
