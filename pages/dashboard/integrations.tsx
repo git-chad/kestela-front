@@ -40,15 +40,15 @@ function generateCompanyBody(
   };
 }
 
-export default function Integrations(props: Props<any>) {
+export default function Integrations() {
   const [enabled, setEnabled] = useState(false);
   const [qbCompany, setQbCompany] = useState(null);
   const [isLoading, setIsLoading] = useState(true)
-  const { data: session } = useSession();
+  const { data: session } = useSession() as any;
 
   const router = useRouter();
 
-  console.log("Props: ", props)
+  console.log("Session :", session)
 
   const getAuthUrl = async (e: boolean) => {
     if (e) {

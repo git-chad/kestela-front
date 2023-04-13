@@ -7,7 +7,7 @@ export function ApiClient(baseURL: string) {
   });
   instance.interceptors.request.use(
     async (request) => {
-      const session = await getSession();
+      const session = await getSession() as any;
       if (session) {
         request.headers.Authorization = `bearer ${session.access_token}`;
       }

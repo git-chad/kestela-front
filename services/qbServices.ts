@@ -49,3 +49,9 @@ export async function getPnL(user_id: any) {
   const response = await axios.get(url)
   return response?.data
 }
+
+export async function saveOneMapping(body: any) {
+  const url = `/v1/quickbooks/mapping`
+  const response = await axios.post(url, body)
+  return response?.data
+}

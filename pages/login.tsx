@@ -26,26 +26,25 @@ interface IFormInput {
 const Login = () => {
   const router = useRouter();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<IFormInput>({
-    resolver: yupResolver(loginSchema),
-  });
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors, isSubmitting },
+  // } = useForm<IFormInput>({
+  //   resolver: yupResolver(loginSchema),
+  // });
 
   const onSubmit = async (e: any) => {
-    const credential = {
-      email: e.email,
-      password: e.password,
-      redirect: false,
-    };
-    const res = (await signIn("credentials", credential)) as any;
-    if (res.status !== 200) {
-      return toast.error(res.error);
-    }
-    const destination = router.query.p?.toString() || "/dashboard";
-    router.replace(destination);
+    // const credential = {
+    //   email: e.email,
+    //   password: e.password,
+    //   redirect: false,
+    // };
+    e.preventDefault()
+    await signIn('google')
+    
+    // const destination = router.query.p?.toString() || "/dashboard";
+    // router.replace(destination);
   };
 
   return (
@@ -54,15 +53,15 @@ const Login = () => {
         <title>Sign In - Kestela</title>
       </Head>
       <AuthLayout>
-        <div className="flex flex-col">
+        <div className="flex flex-col items-center">
           <Link href="/" aria-label="Home">
             <Logo className="font-bold text-2xl p-2 rounded-lg bg-black text-white w-[210px]" />
           </Link>
-          <div className="mt-20">
+          <div className="mt-4">
             <h2 className="text-lg font-semibold text-gray-900">
               Sign in to your account
             </h2>
-            <p className="mt-2 text-sm text-gray-700">
+            {/* <p className="mt-2 text-sm text-gray-700">
               Don’t have an account?{" "}
               <Link
                 href="/register"
@@ -71,15 +70,16 @@ const Login = () => {
                 Sign up
               </Link>{" "}
               for a free trial.
-            </p>
+            </p> */}
           </div>
         </div>
         <form
           action="#"
           className="mt-10 grid grid-cols-1 gap-y-8"
-          onSubmit={handleSubmit(onSubmit)}
+          // onSubmit={() => signIn('google')}
+          onSubmit={onSubmit}
         >
-          <TextField
+          {/* <TextField
             label="Email address"
             id="email"
             {...register("email")}
@@ -112,9 +112,9 @@ const Login = () => {
                 Sign in <span aria-hidden="true">&rarr;</span>
               </span>
             </Button>
-          </div>
+          </div> */}
           <div className="flex items-center justify-center">
-          <button onClick={() => signIn('google')} className="flex items-center p-4 bg-white hover:bg-gray-50 border rounded-lg transition ease-in-out duration-200">
+          <button className="flex items-center p-4 bg-white hover:bg-gray-50 border rounded-lg transition ease-in-out duration-200">
                 <Image
                     width={20}
                     className="mr-3"
@@ -126,14 +126,14 @@ const Login = () => {
             </button>
           </div>
         </form>
-        <div className="mt-2 p-4">
+        {/* <div className="mt-2 p-4">
           {errors.email && (
             <p className="text-orange-500">* {errors.email.message}</p>
           )}
           {errors.password && (
             <p className="text-orange-500">* {errors.password.message}</p>
           )}
-        </div>
+        </div> */}
       </AuthLayout>
       <ToastContainer />
     </>

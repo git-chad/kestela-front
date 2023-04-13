@@ -6,27 +6,52 @@ function classNames(...classes: string[]) {
 
 // https://script.google.com/macros/s/AKfycbytbDGJDh1AffCTML8EwOnrIHHL0lvF1a6v3hdgUTbuCaKlzgljJYOZh-iOsg-x2GQadA/exec?id=165ZQjRDegYgSONV-Xup_Y3fTBYoJhIoiV9G0S6FTsI8
 
-export default function Example({ pnls, handleChange, handleChangeText }: any) {
+export default function Example({ pnls, handleChange, handleChangeText, handleChangeName, onSave, mappingName }: any) {
 
   return (
     <div className="px-4 sm:px-6 lg:px-8">
-      <div className="sm:flex sm:items-center">
-        <div className="sm:flex-auto">
-          <h1 className="text-base font-semibold leading-6 text-gray-900">Mapping of the P&L</h1>
-          <p className="mt-2 text-sm text-gray-700">
-            Choose the accounts you want to integrate into the template. You can also assign them a custom name
-          </p>
-        </div>
-        <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-          <button
-            type="button"
-            className="block rounded-md bg-indigo-600 py-2 px-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Save mapping
-          </button>
-        </div>
+      <div className='mb-6'>
+        <h1 className="text-base font-semibold leading-6 text-gray-900">Mapping of the P&L</h1>
+        <p className="mt-2 text-sm text-gray-700">
+          Choose the accounts you want to integrate into the template. You can also assign them a custom name
+        </p>
       </div>
-      <div className="-mx-4 mt-10 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg">
+      <div className="sm:flex sm:items-end justify-between">
+        <div>
+          <label htmlFor='mapping-name' className="text-normal font-semibold mb-2 block">Mapping Name</label>
+          <input
+            type="text"
+            name="name"
+            id="mapping-name"
+            value={mappingName}
+            onChange={event => handleChangeName(event.target.value)}
+            className="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 w-[450px]"
+            placeholder="Insert a name"
+          />
+        </div>
+        
+        <button
+          type="button"
+          onClick={onSave}
+          className="block rounded-md bg-indigo-600 py-2 px-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          Save mapping
+        </button>
+      </div>
+      {/* <div className='mt-4'>
+        <label htmlFor='mapping-name' className="text-normal font-semibold mb-2 block">Mapping Name</label>
+        <input
+          type="text"
+          name="name"
+          id="mapping-name"
+          value={mappingName}
+          onChange={event => handleChangeName(event.target.value)}
+          // disabled={!pnls.isIncluded}
+          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          placeholder="Insert a name to identify the mapping"
+        />
+      </div> */}
+      <div className="-mx-4 mt-6 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg">
         <table className="min-w-full divide-y divide-gray-300">
           <thead>
             <tr>
@@ -115,14 +140,14 @@ export default function Example({ pnls, handleChange, handleChangeText }: any) {
                   )}
                 >
                   <input
-                    type="email"
-                    name="email"
-                    id="email"
+                    type="text"
+                    name={pnl.name}
+                    // id="email"
                     value={pnl.nameOnTemplate}
                     onChange={event => handleChangeText(planIdx, event)}
                     disabled={!pnl.isIncluded}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    placeholder="you@example.com"
+                    placeholder="Text"
                   />
                 </td>
               </tr>

@@ -2,12 +2,14 @@ import { useEffect, useState } from "react"
 
 import TableEdit from "@/components/TableEdit"
 import { Spinner } from "@/components/Spinner"
-import { getPnL } from "@/services"
+import { getPnL, saveOneMapping } from "@/services"
 import { useSession } from "next-auth/react"
 
 export default function EditFields() {
+  const [mappingName, setMappingName] = useState('')
   const [pnl, setPnl ] = useState([]) as any
-  const { data: session } = useSession()
+  const [isLoading, setIsLoading] = useState(true)
+  const { data: session } = useSession() as any;
 
   const handleChange = (position:any) => {
     const element = pnl[position] as any;
@@ -35,10 +37,28 @@ export default function EditFields() {
 
   const handleFetchPnl = async (user_id: any) => {
     try {
+      setIsLoading(true)
       const result = await getPnL(user_id)
       setPnl(extractAccounts(result))
+      setIsLoading(false)
     } catch (error) {
       console.log("Error: ", error)
+    }
+  }
+
+  const saveMapping = async () => {
+    try {
+      setIsLoading(true)
+      const body = {
+        name: '',
+        fields: pnl,
+        user_id: session.user.id
+      }
+      const mapping = await saveOneMapping(body)
+      console.log("Mapping: ", mapping)
+      setIsLoading(false)
+    } catch (error) {
+
     }
   }
 
@@ -51,9 +71,16 @@ export default function EditFields() {
   return (
     <div className="mx-auto my-20 max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        {!pnl 
+        {isLoading 
           ? <Spinner />
-          : <TableEdit pnls={pnl} handleChange={handleChange} handleChangeText={handleChangeText} />
+          : <TableEdit
+              pnls={pnl}
+              handleChange={handleChange}
+              handleChangeText={handleChangeText}
+              mappingName={mappingName}
+              handleChangeName={setMappingName}
+              onSave={saveMapping}
+             />
         }   
       </div>
     </div>
