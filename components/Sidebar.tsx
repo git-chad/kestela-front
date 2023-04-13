@@ -11,6 +11,8 @@ import {
 } from '@heroicons/react/24/outline';
 import { signOut, useSession } from 'next-auth/react';
 
+import kestelalogo from "@/images/logos/kestela_logo.png"
+
 const navigation = [
   { name: 'Dashboard', icon: HomeIcon, href: '/dashboard' },
   {
@@ -37,13 +39,13 @@ export default function Sidebar() {
       <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
         <div className="flex flex-shrink-0 items-center px-4">
           <Image
-            className="h-8 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg"
+            className="h-auto w-auto"
+            src={kestelalogo}
             alt="Your Company"
-            width={20}
-            height={20}
+            // width={20}
+            // height={20}
           />
-          <h2 className="ml-2 text-2xl font-bold">Kestela Platform</h2>
+          {/* <h2 className="ml-2 text-2xl font-bold">Kestela Platform</h2> */}
         </div>
         <nav className="mt-5 flex-1 space-y-1 bg-white px-2" aria-label="Sidebar">
           <Link

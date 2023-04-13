@@ -57,6 +57,7 @@ export default function EditFields() {
       const mapping = await saveOneMapping(body)
       console.log("Mapping: ", mapping)
       setIsLoading(false)
+      window.location.replace('https://docs.google.com/spreadsheets/d/1ncD5YkctdcJMFXNPOk8ZX-cFKi1XFLXEfHNvq4ZSW5Q/copy')
     } catch (error) {
 
     }

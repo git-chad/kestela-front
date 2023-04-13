@@ -48,8 +48,6 @@ export default function Integrations() {
 
   const router = useRouter();
 
-  console.log("Session :", session)
-
   const getAuthUrl = async (e: boolean) => {
     if (e) {
       try {
