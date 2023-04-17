@@ -1,4 +1,5 @@
 import { Switch } from '@headlessui/react'
+import Image from 'next/image';
 
 interface Props {
   title: string;
@@ -13,15 +14,24 @@ function classNames(...classes: any) {
 
 export default function ToggleLabel({ title, description, checked, onChange }: Props) {
   return (
-    <Switch.Group as="div" className="flex items-center justify-between">
-      <span className="flex flex-grow flex-col">
-        <Switch.Label as="span" className="text-sm font-medium text-gray-900" passive>
-          {title}
-        </Switch.Label>
-        <Switch.Description as="span" className="text-sm text-gray-500">
-          {description}
-        </Switch.Description>
-      </span>
+    <Switch.Group as="div" className="flex items-center w-full justify-between">
+      <div className="flex">
+        <Image
+          src="https://www.pngkey.com/png/full/129-1296317_quickbooks-logo-quickbooks-logo.png"
+          width={50}
+          height={40}
+          className="mr-4"
+          alt={''}
+        />
+        <span className="flex flex-grow flex-col">
+          <Switch.Label as="span" className="text-sm font-medium text-gray-900" passive>
+            {title}
+          </Switch.Label>
+          <Switch.Description as="span" className="text-sm text-gray-500">
+            {description}
+          </Switch.Description>
+        </span>
+      </div>
       <Switch
         checked={checked}
         onChange={onChange}

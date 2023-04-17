@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSession, getSession } from 'next-auth/react';
-import Image from 'next/image';
 
 import ToggleLabel from '@/components/ToggleLabel';
 import StackedList from '@/components/StackedList';
@@ -125,14 +124,7 @@ export default function Integrations() {
 
   return (
     <div className="mx-auto my-20 max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-5xl">
-        <Image
-          src="https://www.pngkey.com/png/full/129-1296317_quickbooks-logo-quickbooks-logo.png"
-          width={40}
-          height={40}
-          alt={''}
-        />
-        <br />
+      <div className="mx-auto max-w-5xl flex">
         <ToggleLabel
           checked={enabled}
           onChange={getAuthUrl}
