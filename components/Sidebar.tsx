@@ -6,7 +6,9 @@ import {
   HomeIcon,
   InboxIcon,
   UsersIcon,
+  MapIcon,
   LinkIcon,
+  DocumentDuplicateIcon,
   AdjustmentsHorizontalIcon,
 } from '@heroicons/react/24/outline';
 import { signOut, useSession } from 'next-auth/react';
@@ -21,7 +23,9 @@ const navigation = [
     href: '/dashboard/integrations',
     count: 1,
   },
-  { name: 'Gallery', icon: LinkIcon, href: '/dashboard/gallery', count: 4 },
+  { name: 'Gallery', icon: LinkIcon, href: '/dashboard/gallery' },
+  { name: 'My Templates', icon: DocumentDuplicateIcon, href: '/dashboard/my-templates', count: 2 },
+  { name: 'Maping', icon: MapIcon, href: '/dashboard/maping' },
   { name: 'Documents', icon: InboxIcon, href: '#', count: 12 },
   { name: 'Profile', icon: UsersIcon, href: '/dashboard/profile' },
   { name: 'Reports', icon: ChartBarIcon, href: '#' },
@@ -123,7 +127,7 @@ export default function Sidebar() {
       </div>
       <div className="flex flex-shrink-0 border-t border-gray-200 p-4 justify-center">
         <div className="group block w-full flex-shrink-0">
-          <div className="flex items-center ml-2">
+          <div className="flex items-center flex-col">
             <div>
               <Image
                 className="inline-block h-9 w-9 rounded-full"
@@ -133,16 +137,16 @@ export default function Sidebar() {
                 height={20}
               />
             </div>
-            <div className="ml-3">
-              <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
+            <div className="ml-3 mb-2">
+              <p className="text-sm text-center font-medium text-gray-700 group-hover:text-gray-900">
                 {data?.user.name}
               </p>
-              <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
+              <p className="text-xs text-center font-medium text-gray-500 group-hover:text-gray-700">
                 {data?.user.email}
               </p>
             </div>
             <p
-              className="lg:ml-8 hover:cursor-pointer hover:opacity-75 font-semibold"
+              className="group flex justify-center hover:cursor-pointer rounded-md bg-[#5064FF] py-2 px-4 text-xs font-poppins font-semibold text-white hover:bg-[#5073ff]"
               onClick={() => signOut({ callbackUrl: `https://${process.env.VERCEL_URL}` })}
             >
               Logout
