@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react"
+import { useSession } from "next-auth/react"
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import TableEdit from "@/components/TableEdit"
 import { Spinner } from "@/components/Spinner"
+
 import { getPnL, saveOneMapping } from "@/services"
-import { useSession } from "next-auth/react"
+
+
 
 export default function EditFields() {
+  const [isChecked, setIsChecked] = useState(false)
   const [mappingName, setMappingName] = useState('')
   const [pnl, setPnl ] = useState([]) as any
   const [isLoading, setIsLoading] = useState(true)
@@ -47,10 +53,21 @@ export default function EditFields() {
   }
 
   const saveMapping = async () => {
+    if(!mappingName)
+      return toast.warn('Enter a mapping name', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
     try {
       setIsLoading(true)
       const body = {
-        name: '',
+        name: mappingName,
         fields: pnl,
         user_id: session.user.id
       }
@@ -62,6 +79,7 @@ export default function EditFields() {
 
     }
   }
+  // https://docs.google.com/spreadsheets/d/1BsU1sCYLvj8rh6oPzO9VLOjWkUdC2_othagUi0pn5-I/edit#gid=1381707055
 
   useEffect(() => {
     if (session) {
@@ -70,21 +88,26 @@ export default function EditFields() {
   }, [])
 
   return (
-    <div className="mx-auto my-20 max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        {isLoading 
-          ? <Spinner />
-          : <TableEdit
-              pnls={pnl}
-              handleChange={handleChange}
-              handleChangeText={handleChangeText}
-              mappingName={mappingName}
-              handleChangeName={setMappingName}
-              onSave={saveMapping}
-             />
-        }   
+    <>
+      <div className="mx-auto my-8 max-w-7xl">
+        <div className="mx-auto max-w-7xl">
+          {isLoading 
+            ? <Spinner />
+            : <TableEdit
+                pnls={pnl}
+                handleChange={handleChange}
+                handleChangeText={handleChangeText}
+                mappingName={mappingName}
+                handleChangeName={setMappingName}
+                isChecked={isChecked}
+                setIsChecked={setIsChecked}
+                onSave={saveMapping}
+              />
+          }   
+        </div>
       </div>
-    </div>
+      <ToastContainer />
+    </>
   )
 }
 
@@ -146,6 +169,5 @@ function extractAccounts(json: any) {
   }
 
   parseRows(json.rows, '');
-  console.log("Accounts: ", accounts)
   return accounts;
 }

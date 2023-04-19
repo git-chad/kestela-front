@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import backgroundImage from '@/images/background-auth.jpg'
+import backgroundImage from '@/images/kestela-background-login.jpg'
 
 export function AuthLayout({ children }: any) {
   return (
@@ -13,7 +13,7 @@ export function AuthLayout({ children }: any) {
         </div>
         <div className="hidden sm:contents lg:relative lg:block lg:flex-1">
           <Image
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-fill"
             src={backgroundImage}
             alt=""
             unoptimized

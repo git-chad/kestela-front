@@ -4,7 +4,7 @@ import { Tab } from '@headlessui/react'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
-import backgroundImage from '@/images/background-features.jpg'
+import backgroundImage from '@/images/kestela_2023_background.png'
 // import screenshotExpenses from '@/images/screenshots/expenses.png'
 // import screenshotPayroll from '@/images/screenshots/payroll.png'
 // import screenshotReporting from '@/images/screenshots/reporting.png'
@@ -63,7 +63,7 @@ export function PrimaryFeatures() {
       className="relative overflow-hidden bg-blue-600 pt-20 pb-28 sm:py-32"
     >
       <Image
-        className="absolute top-1/2 left-1/2 max-w-none translate-x-[-44%] translate-y-[-42%]"
+        className="absolute top-0 left-0 max-w-none object-fill scale-x-[-1]"
         src={backgroundImage}
         alt=""
         width={2245}
