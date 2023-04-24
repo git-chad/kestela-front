@@ -26,9 +26,6 @@ const navigation = [
   { name: 'Gallery', icon: LinkIcon, href: '/dashboard/gallery' },
   { name: 'My Templates', icon: DocumentDuplicateIcon, href: '/dashboard/my-templates', count: 2 },
   { name: 'Maping', icon: MapIcon, href: '/dashboard/maping' },
-  { name: 'Documents', icon: InboxIcon, href: '#', count: 12 },
-  { name: 'Profile', icon: UsersIcon, href: '/dashboard/profile' },
-  { name: 'Reports', icon: ChartBarIcon, href: '#' },
 ];
 
 function classNames(...classes: any) {
