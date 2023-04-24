@@ -18,6 +18,7 @@ export function Footer() {
               <NavLink href="#testimonials">Testimonials</NavLink>
               <NavLink href="#pricing">Pricing</NavLink>
               <NavLink href="/privacy-policy">Privacy policy</NavLink>
+              <NavLink href="/contact">Contact us</NavLink>
               <NavLink href="/terms-conditions">Terms & conditions</NavLink>
             </div>
             <div className="my-2 flex justify-center">
