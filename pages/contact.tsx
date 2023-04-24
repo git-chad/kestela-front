@@ -6,7 +6,7 @@ import { Logo } from '@/components/Logo'
 export default function ContactUs() {
   return (
     <div className="relative isolate bg-white">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2 h-screen">
         <div className="relative px-6 pb-20 py-10 lg:static lg:px-8">
           <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
           <div className="flex items-center pb-20">
