@@ -114,7 +114,7 @@ const Login = () => {
             </Button>
           </div> */}
           <div className="flex items-center justify-center">
-          <button className="flex w-4/5 items-center h-12 text-sm p-4 bg-white hover:bg-gray-50 border rounded transition ease-in-out duration-200 h-[52px]">
+          <button className="flex w-4/5 items-center h-12 text-sm p-4 bg-white hover:bg-gray-50 border rounded transition ease-in-out duration-200 h-[48px]">
                 <Image
                     width={20}
                     className="mr-3 ml-4"
