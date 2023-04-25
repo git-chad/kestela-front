@@ -114,15 +114,15 @@ const Login = () => {
             </Button>
           </div> */}
           <div className="flex items-center justify-center">
-          <button className="flex items-center p-4 bg-white hover:bg-gray-50 border rounded-lg transition ease-in-out duration-200">
+          <button className="flex w-4/5 items-center h-12 text-sm p-4 bg-white hover:bg-gray-50 border rounded transition ease-in-out duration-200 h-[52px]">
                 <Image
                     width={20}
-                    className="mr-3"
+                    className="mr-3 ml-4"
                     src={logoGoogle}
                     alt="google"
                     unoptimized
                   />
-                <span className="font-semibold leading-normal">Sign up with Google</span>
+                <span className="font-semibold leading-normal mx-7">Sign up with Google</span>
             </button>
           </div>
         </form>
