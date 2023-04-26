@@ -2,7 +2,6 @@ import { PopupButton } from '@typeform/embed-react';
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 import { useSession } from 'next-auth/react';
-import SimpleSelect from "@/components/SimpleSelect"
 import logoDiscord from '@/images/logos/discord.svg'
 import logoG2 from '@/images/logos/g2.svg'
 import googlePlay from '@/images/logos/google_play-icon.svg'
