@@ -55,3 +55,15 @@ export async function saveOneMapping(body: any) {
   const response = await axios.post(url, body)
   return response?.data
 }
+
+export async function saveTemplate(body: any) {
+  const url = `/v1/quickbooks/myTemplates`
+  const response = await axios.post(url, body)
+  return response?.data
+}
+
+export async function getTemplates() {
+  const url = `/v1/quickbooks/myTemplates`
+  const response = await axios.get(url)
+  return response?.data
+}

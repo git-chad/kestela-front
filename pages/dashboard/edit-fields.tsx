@@ -2,11 +2,13 @@ import { useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { gapi } from 'gapi-script';
 
 import TableEdit from "@/components/TableEdit"
 import { Spinner } from "@/components/Spinner"
 
-import { getPnL, saveOneMapping } from "@/services"
+import { getPnL, saveOneMapping, saveTemplate } from "@/services"
+import { useRouter } from "next/router";
 
 
 
@@ -15,7 +17,106 @@ export default function EditFields() {
   const [mappingName, setMappingName] = useState('')
   const [pnl, setPnl ] = useState([]) as any
   const [isLoading, setIsLoading] = useState(true)
+
+  const router = useRouter()
+
   const { data: session } = useSession() as any;
+
+  const handleClientLoad = (mapping: any) => {
+    gapi.load('client:auth2', () => initClient(mapping));
+  };
+
+  const initClient = (mapping: any) => {
+    // setIsLoadingGoogleDriveApi(true);
+    gapi.client
+      .init({
+        apiKey: "AIzaSyCWLjjfdeBowVuWbKVzhzFHLPEQ6p-y-yQ",
+        clientId: "519942825314-ggfa8apu4n5pu0b3cd5f5jr9vpgm1kvm.apps.googleusercontent.com",
+        discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest'],
+        scope: 'https://www.googleapis.com/auth/drive',
+      })
+      .then(
+        function () {
+          // Listen for sign-in state changes.
+          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+          // Handle the initial sign-in state.
+          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get(), mapping);
+        },
+        function (error: any) {
+          console.log("Error: ", error)
+        }
+      );
+  };
+
+  const updateSigninStatus = async (isSignedIn: boolean, mapping: any) => {
+    if (isSignedIn) {
+      let cloned
+      try {
+        cloned = (await gapi.client.drive.files.copy({
+          fileId: '1ncD5YkctdcJMFXNPOk8ZX-cFKi1XFLXEfHNvq4ZSW5Q'
+        })).result
+        console.log("Cloned: ", cloned)
+        listFiles(cloned, mapping);
+      } catch (error) {
+        console.log("ERROR: ", error)
+      }
+      // setIsLoadingGoogleDriveApi(false);
+      // // list files if user is authenticated
+
+    } else {
+      // prompt user to sign in
+      handleAuthClick();
+    }
+  };
+
+
+  const listFiles = async (cloned: any, mapping: any) => {
+
+   const result = (await gapi.client.drive.files.update({
+      fileId: cloned.id,
+      // addParents: "1_oDW-j2Lq-pC6YZfYG9YeRvpJGuXaUqz",
+      // removeParents: oldFolderId,
+      resource: { name: "Production - Kestela / Add-on" },
+      fields: 'id, parents'
+     })).result
+
+     console.log("Result: ", result)
+
+    // https://docs.google.com/spreadsheets/d/137nZebC9RT5u8vmLUxRzjOBT9WXLFZ0DRJ3kSW_ENs8
+
+    const body = {
+      name: 'Production - Kestela / Add-on',
+      url: `https://docs.google.com/spreadsheets/d/${result.id}`,
+      user_id: session.user.id,
+      mapping_id: mapping.id
+    }
+
+    const tamplatesSaved = await saveTemplate(body)
+
+    console.log("Body: ", tamplatesSaved)
+    setIsLoading(false)
+
+    router.push('/dashboard/my-templates')
+    // gapi.client.drive.files
+    //   .list({
+    //     pageSize: 10,
+    //     fields: 'nextPageToken, files(id, name, mimeType, modifiedTime)',
+    //     q: searchTerm,
+    //   })
+    //   .then(function (response) {
+    //     setIsFetchingGoogleDriveFiles(false);
+    //     setListDocumentsVisibility(true);
+    //     const res = JSON.parse(response.body);
+    //     setDocuments(res.files);
+    //   });
+  };
+
+  const handleAuthClick = () => {
+    gapi.auth2.getAuthInstance().signIn();
+  };
+
+  // --------------------- FIN DE GAPI-SCRIPT ---------------------
 
   const handleChange = (position:any) => {
     const element = pnl[position] as any;
@@ -72,9 +173,8 @@ export default function EditFields() {
         user_id: session.user.id
       }
       const mapping = await saveOneMapping(body)
-      console.log("Mapping: ", mapping)
-      setIsLoading(false)
-      window.location.replace('https://docs.google.com/spreadsheets/d/1ncD5YkctdcJMFXNPOk8ZX-cFKi1XFLXEfHNvq4ZSW5Q/copy')
+      handleClientLoad(mapping)
+      
     } catch (error) {
 
     }

@@ -35,7 +35,7 @@ export default function Dashboard() {
               {/* Video */}
               <div className="shadow-sm ring-gray-900/5 h-full sm:mx-0 sm:rounded-lg sm:p-6 bg-white  lg:col-span-2 lg:row-span-2">
                 <div className="flex w-full justify-between">
-                  <iframe className="w-10/12 sm:rounded" src="https://www.youtube.com/embed/ot3k3k_FTgU"></iframe>
+                  <iframe className="w-10/12 sm:rounded" src="https://www.youtube.com/embed/7_bstJ88KKY"></iframe>
                   <div className="pl-4 w-4/12 ">
                     <h4 className="inline text-sm mb-12">Welcome to KESTELA <span>&#129489;&#127995;&#8205;&#128187;</span></h4>
                     <div className="border-b border-gray-900/5 text-xs pt-2 mb-2"></div>
