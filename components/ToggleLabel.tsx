@@ -14,7 +14,7 @@ function classNames(...classes: any) {
 
 export default function ToggleLabel({ title, description, checked, onChange }: Props) {
   return (
-    <Switch.Group as="div" className="flex items-center w-full justify-between">
+    <Switch.Group as="div" className="flex items-center w-full justify-between bg-white p-4 rounded-md">
       <div className="flex">
         <Image
           src="https://www.pngkey.com/png/full/129-1296317_quickbooks-logo-quickbooks-logo.png"
