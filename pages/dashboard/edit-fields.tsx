@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 
 
 
-export default async function EditFields() {
+export default function EditFields() {
   const [isChecked, setIsChecked] = useState(false)
   const [mappingName, setMappingName] = useState('')
   const [pnl, setPnl ] = useState([]) as any
@@ -19,16 +19,16 @@ export default async function EditFields() {
 
   const router = useRouter()
 
-  const gapi = await import('gapi-script').then((pack) => pack.gapi);
-
   const { data: session } = useSession() as any;
 
-  const handleClientLoad = (mapping: any) => {
+  const handleClientLoad = async (mapping: any) => {
+    const gapi = await import('gapi-script').then((pack) => pack.gapi);
     gapi.load('client:auth2', () => initClient(mapping));
   };
 
-  const initClient = (mapping: any) => {
+  const initClient = async (mapping: any) => {
     // setIsLoadingGoogleDriveApi(true);
+    const gapi = await import('gapi-script').then((pack) => pack.gapi);
     gapi.client
       .init({
         apiKey: "AIzaSyCWLjjfdeBowVuWbKVzhzFHLPEQ6p-y-yQ",
@@ -51,6 +51,7 @@ export default async function EditFields() {
   };
 
   const updateSigninStatus = async (isSignedIn: boolean, mapping: any) => {
+    const gapi = await import('gapi-script').then((pack) => pack.gapi);
     if (isSignedIn) {
       let cloned
       try {
@@ -73,7 +74,7 @@ export default async function EditFields() {
 
 
   const listFiles = async (cloned: any, mapping: any) => {
-
+   const gapi = await import('gapi-script').then((pack) => pack.gapi);
    const result = (await gapi.client.drive.files.update({
       fileId: cloned.id,
       // addParents: "1_oDW-j2Lq-pC6YZfYG9YeRvpJGuXaUqz",
@@ -113,7 +114,8 @@ export default async function EditFields() {
     //   });
   };
 
-  const handleAuthClick = () => {
+  const handleAuthClick = async () => {
+    const gapi = await import('gapi-script').then((pack) => pack.gapi);
     gapi.auth2.getAuthInstance().signIn();
   };
 

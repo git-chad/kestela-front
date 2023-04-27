@@ -17,7 +17,7 @@ const MyTemplates = () => {
       <div>
         {templates.map((temp: any) => {
           return(
-            <div>
+            <div key={temp.name}>
              <div>{temp.name}</div>
              <a href={temp.url} target="_blank">Go to my SpreadSheet</a>
             </div>
