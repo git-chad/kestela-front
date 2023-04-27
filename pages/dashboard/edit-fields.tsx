@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { gapi } from 'gapi-script';
 
 import TableEdit from "@/components/TableEdit"
 import { Spinner } from "@/components/Spinner"
@@ -12,13 +11,15 @@ import { useRouter } from "next/router";
 
 
 
-export default function EditFields() {
+export default async function EditFields() {
   const [isChecked, setIsChecked] = useState(false)
   const [mappingName, setMappingName] = useState('')
   const [pnl, setPnl ] = useState([]) as any
   const [isLoading, setIsLoading] = useState(true)
 
   const router = useRouter()
+
+  const gapi = await import('gapi-script').then((pack) => pack.gapi);
 
   const { data: session } = useSession() as any;
 

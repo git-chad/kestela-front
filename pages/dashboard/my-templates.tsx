@@ -18,8 +18,8 @@ const MyTemplates = () => {
         {templates.map((temp: any) => {
           return(
             <div>
-            <div>{temp.name}</div>
-            <a href={temp.url} target="_blank">Go to my SpreadSheet</a>
+             <div>{temp.name}</div>
+             <a href={temp.url} target="_blank">Go to my SpreadSheet</a>
             </div>
           )
         })}
