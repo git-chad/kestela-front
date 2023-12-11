@@ -23,10 +23,10 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="w-full px-6 lg:px-8">
+      <div className="w-full p-6 lg:p-8">
         <div>
           <div>
-            <h2 className='pb-4'>Hello,{data?.user.name} <span>&#128075;</span> </h2>
+            <h2 className='pb-4'>Hello, {data?.user.name} <span>&#128075;</span> </h2>
             <p className='text-xs'>Below you will find useful informations about the usages of your current plan.</p>
           </div>
           <div className="max-w-7xl pb-4 py-8">
