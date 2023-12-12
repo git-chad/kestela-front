@@ -22,26 +22,30 @@ const Invites = () => {
   };
 
   const send = async (event: any) => {
-    console.log('sending...');
+    console.log('sending... to', emails);
     
-    'use server';
-    event.preventDefault()
-    const resend = new Resend(resendKey);
-
+    event.preventDefault();
+  
     try {
-      const { data } = await resend.emails.send({
-        from: 'Kestela <onboarding@resend.dev>',
-        to: emails, 
-        subject: 'Kestela | ' + company + ' Invitation',
-        react: EmailTemplate({ firstName: 'El Toto Loco', company: company }),
+      const response = await fetch('/api/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          emails: emails,
+          company: company
+        }),
       });
-
+  
+      const data = await response.json();
       console.log(data);
-      setEmails([]); 
+      setEmails([]);
     } catch (error) {
       console.error('Failed to send invitations:', error);
     }
   };
+  
 
   return (
     <div className="mx-auto my-20 max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col">
