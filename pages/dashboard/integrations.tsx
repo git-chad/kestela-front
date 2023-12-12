@@ -124,7 +124,11 @@ export default function Integrations() {
 
   return (
     <div className="mx-auto my-20 max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-5xl flex">
+      <div className="flex flex-col">
+        <div className="flex flex-col items-start mb-16">
+          <h1 className='text-5xl font-medium'>Integrations</h1>
+          <h2 className='text-2xl'>Manage your integrations</h2>
+        </div>
         <ToggleLabel
           checked={enabled}
           onChange={getAuthUrl}

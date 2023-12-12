@@ -13,6 +13,7 @@ import {
   AdjustmentsHorizontalIcon,
   ChevronRightIcon,
   ChevronLeftIcon,
+  EnvelopeIcon
 } from '@heroicons/react/24/outline';
 import { signOut, useSession } from 'next-auth/react';
 
@@ -36,7 +37,8 @@ const navigation = [
     href: '/dashboard/my-templates',
     count: 2,
   },
-  { name: 'Maping', icon: MapIcon, href: '/dashboard/maping' },
+  { name: 'Mapping', icon: MapIcon, href: '/dashboard/mapping' },
+  { name: 'Invites', icon: EnvelopeIcon, href: '/dashboard/invites' },
 ];
 
 function classNames(...classes: any) {
@@ -45,7 +47,7 @@ function classNames(...classes: any) {
 
 const variants = {
   open: { width: '100%', transition: { duration: 0.3 } },
-  closed: { width: '25%', transition: { duration: 0.3 } },
+  closed: { width: '28%', transition: { duration: 0.3 } },
 };
 
 const logoVariants = {
