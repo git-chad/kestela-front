@@ -13,7 +13,8 @@ import {
   AdjustmentsHorizontalIcon,
   ChevronRightIcon,
   ChevronLeftIcon,
-  EnvelopeIcon
+  EnvelopeIcon,
+  BriefcaseIcon
 } from '@heroicons/react/24/outline';
 import { signOut, useSession } from 'next-auth/react';
 
@@ -38,6 +39,7 @@ const navigation = [
     count: 2,
   },
   { name: 'Mapping', icon: MapIcon, href: '/dashboard/mapping' },
+  { name: 'Organizations', icon: BriefcaseIcon, href: '/dashboard/organizations' },
   { name: 'Invites', icon: EnvelopeIcon, href: '/dashboard/invites' },
 ];
 
@@ -144,9 +146,8 @@ export default function Sidebar() {
                         ? 'bg-gray-100 text-gray-900 hover:text-gray-900 hover:bg-gray-100'
                         : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50',
                       'group flex items-center px-2 py-2 text-sm font-medium'
-                    )} ${
-                      !isOpen ? 'rounded-full flex justify-center p-2 w-12 h-12' : 'rounded-xl p-2'
-                    }`}
+                    )} ${!isOpen ? 'rounded-full flex justify-center p-2 w-12 h-12' : 'rounded-xl p-2'
+                      }`}
                   >
                     <item.icon
                       className={`${classNames(
