@@ -48,17 +48,20 @@ const Organizations = () => {
     <div className="mx-auto my-20 max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col">
       <h1 className="text-5xl font-medium">Organizations</h1>
       <h2 className="text-2xl mb-16">Link up!</h2>
-      <button onClick={() => setModalOpen(true)} className="text-[#5865FF] text-semibold self-start mb-4 hover:text-[#19B8FF] transition-colors">
+      <button
+        onClick={() => setModalOpen(true)}
+        className="text-[#5865FF] text-semibold self-start mb-4 hover:text-[#19B8FF] transition-colors"
+      >
         Add new organization
       </button>
 
-      {isModalOpen && (
-        <>
-          <div className="absolute top-0 right-0 z-50">
-            <OrgModal onClose={() => setModalOpen(false)} onSave={handleSaveNewCompany} status={isModalOpen}/>
-          </div>
-        </>
-      )}
+      <div className="absolute top-0 right-0 z-50">
+        <OrgModal
+          onClose={() => setModalOpen(false)}
+          onSave={handleSaveNewCompany}
+          status={isModalOpen}
+        />
+      </div>
 
       <AnimatePresence>
         <div className="space-y-8">

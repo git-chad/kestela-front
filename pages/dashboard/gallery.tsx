@@ -1,84 +1,152 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import { useState } from 'react';
+import { ListBulletIcon, ViewColumnsIcon } from '@heroicons/react/24/outline';
+import TemplatesThumbnails from '@/components/TemplatesThumbnails';
+import TemplatesFilteredList from '@/components/TemplatesFilteredList';
 
-import imgGoogleDrive from '@/images/logos/google_drive_icon_2020.svg';
-import imgSamplePL from '@/images/screenshots/sampleP&L.png';
-
-const products = [
-  {
-    id: 1,
-    name: 'P&L Template',
-    color:
-      'Track your business`s financial performance with the Kestela P&L template for Google Sheets. Get instant insights into your profit and loss, and make informed decisions about your business`s future',
-    href: '/dashboard/edit-fields',
-    imageSrc: imgSamplePL,
-    imageAlt:
-      'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-    price: '',
-  },
-  {
-    id: 2,
-    name: 'Cash Flow Template',
-    color:
-      'Track your business`s financial performance with the Kestela P&L template for Google Sheets. Get instant insights into your profit and loss, and make informed decisions about your business`s future',
-    href: 'https://docs.google.com/spreadsheets/d/165ZQjRDegYgSONV-Xup_Y3fTBYoJhIoiV9G0S6FTsI8/copy',
-    imageSrc: imgSamplePL,
-    imageAlt:
-      'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-    price: '',
-  },
-];
+import imgSamplePL from '@/images/screenshots/templatePlaceholder.png'
 
 export default function Example() {
+  const [view, setView] = useState(true);
+
+  const toggleView = () => {
+    setView(!view);
+  };
+
   return (
     <div>
-      <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 max-w-full lg:px-8 bg-slate-50">
-        <h2 className="text-xl font-bold text-gray-900">Spreadsheet Templates</h2>
+      <div className="mx-auto my-20 max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col">
+        <h1 className="text-5xl font-medium">Spreadsheet templates</h1>
+        <h2 className="text-2xl mb-8">Get started</h2>
+        <button className='w-6 text-[#5064FF] mb-8' onClick={toggleView}>
+         {view ? <ViewColumnsIcon/> : <ListBulletIcon/>}
+        </button>
 
-        <div className="mt-8 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 xl:gap-x-8">
-          {products.map((product) => (
-            <div className="bg-white rounded-md" key={product.id}>
-              <div className="relative">
-                <div className="relative h-72 w-full overflow-hidden rounded-lg">
-                  <Image
-                    src={product.imageSrc}
-                    alt={product.imageAlt}
-                    className="h-full w-full object-center"
-                  />
-                </div>
-                <div className="relative mt-4 p-4">
-                  <h3 className="text-sm font-medium text-gray-900">{product.name}</h3>
-                  <p className="mt-1 text-sm text-gray-500">{product.color}</p>
-                </div>
-                <div className="absolute inset-x-0 top-0 flex h-72 items-end justify-end overflow-hidden p-4">
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50"
-                  />
-                  <p className="relative text-lg font-semibold text-white">
-                    {product.price}
-                  </p>
-                </div>
-              </div>
-              <div className=" p-4 mt-6">
-                <Link
-                  href={product.href}
-                  className="relative flex items-center justify-center rounded-md border border-transparent bg-gray-100 py-2 px-8 text-sm font-medium text-gray-900 hover:bg-gray-200"
-                >
-                  <Image
-                    width={20}
-                    className="mr-2"
-                    src={imgGoogleDrive}
-                    alt="google drive"
-                    unoptimized
-                  />
-                  Add to my Google Drive <span className="sr-only">, {product.name}</span>
-                </Link>
-              </div>
-            </div>
-          ))}
+        <div>
+          {view ? <TemplatesFilteredList templates={templates} /> : <TemplatesThumbnails templates={templates} />}
         </div>
       </div>
     </div>
   );
 }
+
+const templates = [
+  {
+    id: 1,
+    name: 'P&L',
+    category: 'Financial Reporting',
+    description:
+      'Track your business`s financial performance with the Kestela P&L template for Google Sheets. Get instant insights into your profit and loss, and make informed decisions about your business`s future',
+    href: '/dashboard/edit-fields',
+    imageSrc: imgSamplePL,
+    imageAlt: 'template preview',
+  },
+  {
+    id: 2,
+    name: 'Cash Flow',
+    category: 'Financial Reporting',
+    description: 'Manage your business’s liquidity with ease. This Cash Flow Template helps monitor incoming and outgoing funds, ensuring you maintain a healthy financial balance.',
+    href: 'https://docs.google.com/spreadsheets/d/165ZQjRDegYgSONV-Xup_Y3fTBYoJhIoiV9G0S6FTsI8/copy',
+    imageSrc: imgSamplePL,
+    imageAlt: 'template preview',
+  },
+  {
+    id: 3,
+    name: 'Budget Forecast',
+    category: 'Budgeting & Forecasting',
+    description:
+      'Project your future expenses and income with our comprehensive Budget Forecast Template. Ideal for businesses planning their financial strategy for the upcoming quarters.',
+    href: '/dashboard/budget-forecast',
+    imageSrc: imgSamplePL,
+    imageAlt: 'Budget forecast template preview',
+  },
+  {
+    id: 4,
+    name: 'Balance Sheet',
+    category: 'Financial Reporting',
+    description:
+      'Get a snapshot of your company’s financial health with our detailed Balance Sheet Template, showing assets, liabilities, and equity.',
+    href: '/dashboard/balance-sheet',
+    imageSrc: imgSamplePL,
+    imageAlt: 'Balance sheet template preview',
+  },
+  {
+    id: 5,
+    name: 'Expense Tracking',
+    category: 'Budgeting & Forecasting',
+    description:
+      'Keep a close eye on your expenditures with our Expense Tracking Template, designed to help you monitor and categorize every expense.',
+    href: '/dashboard/expense-tracking',
+    imageSrc: imgSamplePL,
+    imageAlt: 'Expense tracking template preview',
+  },
+  {
+    id: 6,
+    name: 'Invoice Management',
+    category: 'Investment & Financing',
+    description:
+      'Streamline your billing process with our Invoice Management Template. Track issued invoices, received payments, and pending amounts all in one place.',
+    href: '/dashboard/invoice-management',
+    imageSrc: imgSamplePL,
+    imageAlt: 'Invoice management template preview',
+  },
+  {
+    id: 7,
+    name: 'Financial Statement Analysis',
+    category: 'Financial Reporting',
+    description:
+      'Dive deep into your company’s financial statements to analyze performance with our Financial Statement Analysis Template.',
+    href: '/dashboard/financial-statement-analysis',
+    imageSrc: imgSamplePL,
+    imageAlt: 'Financial statement analysis template preview',
+  },
+  {
+    id: 8,
+    name: 'Break-even Analysis',
+    category: 'Budgeting & Forecasting',
+    description:
+      'Determine the point at which your business will be able to cover all its expenses and start generating profit with our Break-even Analysis Template.',
+    href: '/dashboard/break-even-analysis',
+    imageSrc: imgSamplePL,
+    imageAlt: 'Break-even analysis template preview',
+  },
+  {
+    id: 9,
+    name: 'Loan Amortization Schedule',
+    category: 'Investment & Financing',
+    description:
+      'Manage your loan payments and interest rates with our Loan Amortization Schedule Template, allowing you to see the long-term impact of loans on your finances.',
+    href: '/dashboard/loan-amortization',
+    imageSrc: imgSamplePL,
+    imageAlt: 'Loan amortization schedule template preview',
+  },
+  {
+    id: 10,
+    name: 'Sales Forecast',
+    category: 'Budgeting & Forecasting',
+    description:
+      'Predict your future sales volumes and revenue with our Sales Forecast Template, perfect for businesses looking to prepare for growth and seasonal trends.',
+    href: '/dashboard/sales-forecast',
+    imageSrc: imgSamplePL,
+    imageAlt: 'Sales forecast template preview',
+  },
+  {
+    id: 11,
+    name: 'Inventory Management',
+    category: 'Expense Management',
+    description:
+      'Optimize your stock levels and minimize carrying costs with our Inventory Management Template, tailored for businesses that need efficient inventory tracking.',
+    href: '/dashboard/inventory-management',
+    imageSrc: imgSamplePL,
+    imageAlt: 'Inventory management template preview',
+  },
+  {
+    id: 12,
+    name: 'Startup Costs',
+    category: 'Expense Management',
+    description:
+      'Plan out your initial business costs with our Startup Costs Template. It’s ideal for entrepreneurs calculating the capital needed to start their business ventures.',
+    href: '/dashboard/startup-costs',
+    imageSrc: imgSamplePL,
+    imageAlt: 'Startup costs template preview',
+  },
+];
