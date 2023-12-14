@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 interface OrgModalProps {
   onClose: () => void;
@@ -7,7 +8,7 @@ interface OrgModalProps {
     companyDescription: string;
     members: any[];
   }) => void;
-  status: any
+  status: any;
 }
 
 const OrgModal: React.FC<OrgModalProps> = ({ onClose, onSave, status }) => {
@@ -20,8 +21,28 @@ const OrgModal: React.FC<OrgModalProps> = ({ onClose, onSave, status }) => {
   };
 
   return (
-    <div className="modal-background relative w-[500px] min-h-screen border-l border-gray-200 p-8 bg-white">
-      <div className="modal-content flex flex-col border-b border-gray-200 py-4">
+    <motion.div
+      variants={variants}
+      animate={status ? 'open' : 'closed'}
+      initial="closed"
+      transition={{
+        duration: 0.5,
+        ease: [0.77, 0, 0.18, 1],
+      }}
+      className={`modal-background relative w-[500px] min-h-screen border-l border-gray-200 p-8 bg-white ${
+        status ? '' : 'pointer-events-none'
+      } overflow-hidden`}
+    >
+      <motion.div
+        className={`modal-content flex flex-col border-b border-gray-200 py-4`}
+        variants={contentVariants}
+        animate={status ? 'open' : 'closed'}
+        initial="closed"
+        transition={{
+          duration: 0.5,
+          ease: [0.77, 0, 0.18, 1],
+        }}
+      >
         <h3 className="text-2xl mb-16">Add an organization</h3>
 
         <div className="m max-w-lg space-y-2 mb-16">
@@ -85,13 +106,44 @@ const OrgModal: React.FC<OrgModalProps> = ({ onClose, onSave, status }) => {
           </div>
         </div>
 
-        <div className=' max-w-lg justify-end flex space-x-2'>
-          <button onClick={handleSubmit} className='bg-[#5865FF] text-white text-sm w-[100px] py-1.5 rounded-lg'>Save</button>
-          <button onClick={onClose} className='bg-[#333] text-white text-sm w-[100px] py-1.5 rounded-lg'>Cancel</button>
+        <div className=" max-w-lg justify-end flex space-x-2">
+          <button
+            onClick={handleSubmit}
+            className="bg-[#5865FF] text-white text-sm w-[100px] py-1.5 rounded-lg"
+          >
+            Save
+          </button>
+          <button
+            onClick={onClose}
+            className="bg-[#333] text-white text-sm w-[100px] py-1.5 rounded-lg"
+          >
+            Cancel
+          </button>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
 export default OrgModal;
+
+const variants = {
+  open: {
+    x: 0,
+    opacity: 1,
+  },
+  closed: {
+    opacity: 0,
+  },
+};
+
+const contentVariants = {
+  open: {
+    x: 0,
+    opacity: 1,
+  },
+  closed: {
+    x: '50%', // Content slides out to the right
+    opacity: 0,
+  },
+};
