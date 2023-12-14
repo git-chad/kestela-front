@@ -66,12 +66,12 @@ const Organizations = () => {
       <AnimatePresence>
         <div className="space-y-8">
           {organizations.map((company, index) => (
-            <div className="relative max-w-md">
+            <div className="relative max-w-md" key={index}>
               <motion.a
                 href={`/dashboard/organizations/${encodeURIComponent(
                   company.companyName
                 )}`}
-                key={index}
+                key={company.companyName} // Changed from index to companyName
                 className="bg-[#F3F4F6] flex flex-col p-6 rounded-xl max-w-md hover:scale-[101.5%] transition-all cursor-pointer"
                 variants={cardVariants}
                 initial="initial"
@@ -88,7 +88,7 @@ const Organizations = () => {
 
                 {company.members
                   .filter((member) => member.role === 'Owner')
-                  .map((owner) => (
+                  .map((owner, index) => (
                     <div
                       key={owner.email}
                       className="text-xs flex w-[40%] justify-between mt-6"
