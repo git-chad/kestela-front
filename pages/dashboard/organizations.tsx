@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
+import OrgModal from '@/components/OrgModal';
 
 const Organizations = () => {
   const [dropdownOpen, setDropdownOpen] = useState<Record<string, boolean>>({});
+  const [organizations, setOrganizations] = useState(companies);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     const closeDropdown = (event: MouseEvent) => {
@@ -37,23 +40,45 @@ const Organizations = () => {
     setDropdownOpen((prev) => ({ ...prev, [companyName]: false }));
   };
 
+  const handleSaveNewCompany = (newCompany: any) => {
+    setOrganizations((prev) => [...prev, newCompany]);
+  };
+
   return (
     <div className="mx-auto my-20 max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col">
       <h1 className="text-5xl font-medium">Organizations</h1>
       <h2 className="text-2xl mb-16">Link up!</h2>
+      <button onClick={() => setModalOpen(true)} className="text-[#5865FF] text-semibold self-start mb-4 hover:text-[#19B8FF] transition-colors">
+        Add new organization
+      </button>
+
+      {isModalOpen && (
+        <>
+          <div className="absolute top-0 right-0 z-50">
+            <OrgModal onClose={() => setModalOpen(false)} onSave={handleSaveNewCompany} status={isModalOpen}/>
+          </div>
+        </>
+      )}
+
       <AnimatePresence>
         <div className="space-y-8">
-          {companies.map((company, index) => (
+          {organizations.map((company, index) => (
             <div className="relative max-w-md">
               <motion.a
-                href={`/dashboard/organizations/${encodeURIComponent(company.companyName)}`}
+                href={`/dashboard/organizations/${encodeURIComponent(
+                  company.companyName
+                )}`}
                 key={index}
                 className="bg-[#F3F4F6] flex flex-col p-6 rounded-xl max-w-md hover:scale-[101.5%] transition-all cursor-pointer"
                 variants={cardVariants}
                 initial="initial"
                 animate="animate"
                 exit="exit"
-                transition={{ duration: 0.5, delay: index * 0.2, ease: [0.77,0,0.18,1] }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.2,
+                  ease: [0.77, 0, 0.18, 1],
+                }}
               >
                 <h1 className="font-medium">{company.companyName}</h1>
                 <h2 className="text-sm text-[#333333]">{company.companyDescription}</h2>
@@ -76,7 +101,11 @@ const Organizations = () => {
                 initial="initial"
                 animate="animate"
                 exit="exit"
-                transition={{ duration: 0.5, delay: index * 0.2, ease: [0.77,0,0.18,1] }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.2,
+                  ease: [0.77, 0, 0.18, 1],
+                }}
               >
                 <button
                   onClick={(event) => toggleDropdown(company.companyName, event)}
@@ -91,7 +120,7 @@ const Organizations = () => {
                     initial="initial"
                     animate="animate"
                     exit="exit"
-                    transition={{ duration: 0.5, delay: index * 0.2 }}
+                    transition={{ duration: 0.1 }}
                   >
                     <div className="p-1">
                       <button
