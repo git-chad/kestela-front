@@ -28,13 +28,10 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="w-full p-6 lg:p-8 flex flex-col min-h-[96vh] items-center justify-center relative">
-        <div className='absolute text-center top-52'>
+      <div className="w-full flex flex-col items-center justify-center h-full">
+        <div className='text-center'>
           <h1 className={`text-8xl ${poppins.className} font-bold text-[#3c4bbe]`}>Under construction</h1>
           <h2 className={`text-5xl ${lora.className} mt-2 font-semibold text-[#333333]`}>Check back soon!</h2>
-        </div>
-        <div className='p-8 mt-56'>
-          <Image src={underconstuction} alt='under construction doodle' className='w-[30vw]'/>
         </div>
       </div>
       {/* <PopupButton id={'kVnkrHW8'} ref={ref}>
