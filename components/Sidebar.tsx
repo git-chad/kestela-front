@@ -38,7 +38,7 @@ const navigation = [
     href: '/dashboard/my-templates',
     count: 2,
   },
-  { name: 'Mapping', icon: MapIcon, href: '/dashboard/mapping' },
+  { name: 'Customizations', icon: MapIcon, href: '/dashboard/customizations' },
   { name: 'Organizations', icon: BriefcaseIcon, href: '/dashboard/organizations' },
   { name: 'Invites', icon: EnvelopeIcon, href: '/dashboard/invites' },
 ];

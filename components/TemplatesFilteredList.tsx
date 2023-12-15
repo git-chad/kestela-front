@@ -61,7 +61,7 @@ const TemplatesFilteredList: React.FC<{ templates: Template[] }> = ({ templates 
             <input
               id="search"
               name="search"
-              className="block w-full rounded-md bg-white py-1.5 pl-10 pr-3 ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md bg-white py-2 pl-10 pr-3 placeholder:text-gray-400 sm:text-sm sm:leading-6 border-gray-100" 
               placeholder="Search"
               type="search"
               value={searchQuery}

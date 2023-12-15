@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { motion, AnimatePresence } from 'framer-motion';
-import { PencilIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
+import { PencilIcon, EnvelopeIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import RoleDropdown from '@/components/RoleDropdown';
+import OrganizationsDropdownSelector from '@/components/OrganizationsDropdownSelector';
 
 const OrganizationInfo = () => {
   const router = useRouter();
@@ -15,6 +16,7 @@ const OrganizationInfo = () => {
 
   const [editMode, setEditMode] = useState<Record<string, boolean>>({});
   const [memberRoles, setMemberRoles] = useState<Record<string, string>>({});
+  const [orgSelector, setOrgSelector] = useState(false)
 
   useEffect(() => {
     if (companyData) {
@@ -31,10 +33,19 @@ const OrganizationInfo = () => {
     setEditMode((prev) => ({ ...prev, [email]: false })); 
   };
   
+  const toggleSelector = () => {
+    setOrgSelector(!orgSelector)
+  }
 
   return (
     <div className="mx-auto my-20 max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col">
-      <h1 className="text-5xl font-medium">{companyName}</h1>
+      <div className='flex items-center'>
+        <h1 className="text-5xl font-medium">{companyName}</h1>
+        <button className={`relative ${!orgSelector ? '' : ''}`} onClick={toggleSelector}>
+          <ChevronUpDownIcon className='w-14 text-[#5865FF] hover:text-[#5866ffc9] transition-all'/>
+          {orgSelector ? <OrganizationsDropdownSelector companies={companies} currentCompany={companyName}/> : ''}
+        </button>
+      </div>
       <h2 className="text-2xl">{companyData?.companyDescription}</h2>
       <a
         href={

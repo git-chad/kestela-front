@@ -2,17 +2,7 @@ import { PopupButton } from '@typeform/embed-react';
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 import { useSession } from 'next-auth/react';
-import logoDiscord from '@/images/logos/discord.svg'
-import logoG2 from '@/images/logos/g2.svg'
-import googlePlay from '@/images/logos/google_play-icon.svg'
-import logoLinkTree from '@/images/logos/linktree-logo.svg'
 import underconstuction from '@/public/undcons2.png'
-import {
-  ClockIcon,
-  QuestionMarkCircleIcon,
-  ArrowTopRightOnSquareIcon,
-  ArrowSmallRightIcon,
-} from '@heroicons/react/24/outline'
 import {Poppins, Lora} from '@next/font/google'
 
 const lora = Lora({subsets: ['latin'], style: ['italic'], weight: 'variable'})
@@ -28,14 +18,14 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="w-full p-6 lg:p-8 flex flex-col min-h-[96vh] items-center justify-center relative">
-        <div className='absolute text-center top-52'>
+      <div className="w-full flex flex-col min-h-[96vh] items-center justify-center">
+        <div className='text-center'>
           <h1 className={`text-8xl ${poppins.className} font-bold text-[#3c4bbe]`}>Under construction</h1>
           <h2 className={`text-5xl ${lora.className} mt-2 font-semibold text-[#333333]`}>Check back soon!</h2>
         </div>
-        <div className='p-8 mt-56'>
+        {/* <div className='p-8 mt-56'>
           <Image src={underconstuction} alt='under construction doodle' className='w-[30vw]'/>
-        </div>
+        </div> */}
       </div>
       {/* <PopupButton id={'kVnkrHW8'} ref={ref}>
         <span></span>
