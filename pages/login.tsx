@@ -126,7 +126,7 @@ const Login = () => {
             </button>
           </div>
         </form>
-        <p className="text-sm text-gray-500 px-8">By joining Kestela, you agree to our <a className="underline" href="/terms-conditions">Terms of Service</a> and <a className="underline" href="/privacy-policy">Privacy Policy</a></p>
+        <p className="text-sm text-gray-500 px-8">By joining Kestela, you agree to our <Link className="underline" href="/terms-conditions">Terms of Service</Link> and <Link className="underline" href="/privacy-policy">Privacy Policy</Link></p>
         {/* <div className="mt-2 p-4">
           {errors.email && (
             <p className="text-orange-500">* {errors.email.message}</p>
