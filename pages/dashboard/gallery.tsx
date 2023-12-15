@@ -4,6 +4,7 @@ import TemplatesThumbnails from '@/components/TemplatesThumbnails';
 import TemplatesFilteredList from '@/components/TemplatesFilteredList';
 
 import imgSamplePL from '@/images/screenshots/templatePlaceholder.png'
+import IFrames from '@/components/IFrames';
 
 export default function Example() {
   const [view, setView] = useState(true);
@@ -22,7 +23,7 @@ export default function Example() {
         </button>
 
         <div>
-          {view ? <TemplatesFilteredList templates={templates} /> : <TemplatesThumbnails templates={templates} />}
+          {view ? <TemplatesFilteredList templates={templates} /> : <TemplatesThumbnails templates={templates}/>}
         </div>
       </div>
     </div>
@@ -39,6 +40,7 @@ const templates = [
     href: '/dashboard/edit-fields',
     imageSrc: imgSamplePL,
     imageAlt: 'template preview',
+    preview: IFrames,
   },
   {
     id: 2,
@@ -48,6 +50,7 @@ const templates = [
     href: 'https://docs.google.com/spreadsheets/d/165ZQjRDegYgSONV-Xup_Y3fTBYoJhIoiV9G0S6FTsI8/copy',
     imageSrc: imgSamplePL,
     imageAlt: 'template preview',
+    preview: IFrames,
   },
   {
     id: 3,
@@ -58,6 +61,7 @@ const templates = [
     href: '/dashboard/budget-forecast',
     imageSrc: imgSamplePL,
     imageAlt: 'Budget forecast template preview',
+    preview: IFrames,
   },
   {
     id: 4,

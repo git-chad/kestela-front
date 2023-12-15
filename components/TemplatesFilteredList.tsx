@@ -2,18 +2,25 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import CategoryDropdown from './CategoryDropdown';
+import IFrames from './IFrames';
 
 interface Template {
   id: number;
   name: string;
   category: string;
   description: string;
+  // preview: React.ComponentType;
 }
 
 const TemplatesFilteredList: React.FC<{ templates: Template[] }> = ({ templates }) => {
   const [currentCategory, setCurrentCategory] = useState('All Categories');
   const [filteredTemplates, setFilteredTemplates] = useState(templates);
   const [searchQuery, setSearchQuery] = useState('');
+  const [showPreview, setShowPreview] = useState(false);
+
+  const togglePreview = () => {
+    setShowPreview(!showPreview)
+  }
 
   const categoryOptions = useMemo(() => {
     const allCategories = templates.map((template) => template.category);
@@ -133,9 +140,9 @@ const TemplatesFilteredList: React.FC<{ templates: Template[] }> = ({ templates 
                       {template.description}
                     </td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                      <a href="#" className="text-[#5064FF] hover:text-indigo-900">
+                      <button className="text-[#5064FF] hover:text-indigo-900" onClick={togglePreview}>
                         Preview
-                      </a>
+                      </button>
                     </td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                       <a href="#" className="text-[#5064FF] hover:text-indigo-900">
@@ -149,6 +156,7 @@ const TemplatesFilteredList: React.FC<{ templates: Template[] }> = ({ templates 
           </div>
         </div>
       </div>
+      {showPreview && <IFrames toggle={togglePreview}/>}
     </div>
   );
 };

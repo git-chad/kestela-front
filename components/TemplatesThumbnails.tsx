@@ -1,8 +1,9 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import { EyeIcon } from '@heroicons/react/24/outline';
 import driveIcon from '@/images/logos/drive-icon.svg';
 import { motion } from 'framer-motion';
+import IFrames from './IFrames';
 
 interface Template {
   id: number;
@@ -11,9 +12,16 @@ interface Template {
   description: string;
   imageSrc: any;
   imageAlt: string;
+  // preview: React.ComponentType;
 }
 
 const TemplatesThumbnails: React.FC<{ templates: Template[] }> = ({ templates }) => {
+  const [showPreview, setShowPreview] = useState(false);
+
+  const togglePreview = () => {
+    setShowPreview(!showPreview)
+  }
+
   return (
     <div>
       <div className="grid grid-cols-3 gap-4">
@@ -41,7 +49,7 @@ const TemplatesThumbnails: React.FC<{ templates: Template[] }> = ({ templates })
             <h1 className="pt-4 font-medium">{template.name}</h1>
             <h2 className="text-xs mb-6">{template.category}</h2>
             <div className="flex justify-start space-x-4 py-2">
-              <button className="w-[120px] bg-white text-sm flex justify-center px-4 py-1.5 rounded-lg border hover:bg-[#5064ff49] transition-colors">
+              <button className="w-[120px] bg-white text-sm flex justify-center px-4 py-1.5 rounded-lg border hover:bg-[#5064ff49] transition-colors" onClick={togglePreview}>
                 Preview
               </button>
               <button className="w-[155px] bg-[#333] text-white text-sm flex justify-between px-4 py-1.5 rounded-lg hover:bg-[#333333d0] transition-colors">
@@ -52,6 +60,7 @@ const TemplatesThumbnails: React.FC<{ templates: Template[] }> = ({ templates })
           </motion.div>
         ))}
       </div>
+      {showPreview && <IFrames toggle={togglePreview}/>}
     </div>
   );
 };
