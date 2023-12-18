@@ -40,7 +40,7 @@ const navigation = [
   },
   { name: 'Customizations', icon: MapIcon, href: '/dashboard/customizations' },
   { name: 'Organizations', icon: BriefcaseIcon, href: '/dashboard/organizations' },
-  { name: 'Invites', icon: EnvelopeIcon, href: '/dashboard/invites' },
+  // { name: 'Invites', icon: EnvelopeIcon, href: '/dashboard/invites' },
 ];
 
 function classNames(...classes: any) {

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { PencilIcon, EnvelopeIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import RoleDropdown from '@/components/RoleDropdown';
 import OrganizationsDropdownSelector from '@/components/OrganizationsDropdownSelector';
+import Invites from '@/components/Invites';
 
 const OrganizationInfo = () => {
   const router = useRouter();
@@ -64,7 +65,7 @@ const OrganizationInfo = () => {
         <div>
           {companyData?.members.map((member, index) => (
             <motion.div
-              key={member.email}
+            key={`${member.email}-${companyName}`}
               className="flex w-[40%] justify-between mt-6 relative"
               variants={memberVariants}
               initial="initial"
@@ -102,6 +103,7 @@ const OrganizationInfo = () => {
             </motion.div>
           ))}
         </div>
+        <Invites/>
       </AnimatePresence>
     </div>
   );

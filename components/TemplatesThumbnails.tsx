@@ -27,7 +27,7 @@ const TemplatesThumbnails: React.FC<{ templates: Template[] }> = ({ templates })
       <div className="grid grid-cols-3 gap-4">
         {templates.map((template) => (
           <motion.div
-            className="px-3 py-2 rounded-xl shadow bg-[#33333305]"
+            className="px-3 py-2 rounded-xl shadow bg-[#33333305] flex flex-col justify-between"
             key={template.id}
             variants={cardVariants}
             initial="initial"
@@ -46,21 +46,23 @@ const TemplatesThumbnails: React.FC<{ templates: Template[] }> = ({ templates })
               height={500}
               className="rounded-md mt-2"
             />
-            <h1 className="pt-4 font-medium">{template.name}</h1>
-            <h2 className="text-xs mb-6">{template.category}</h2>
-            <div className="flex justify-start space-x-4 py-2">
-              <button className="w-[120px] bg-white text-sm flex justify-center px-4 py-1.5 rounded-lg border hover:bg-[#5064ff49] transition-colors" onClick={togglePreview}>
-                Preview
-              </button>
-              <button className="w-[155px] bg-[#333] text-white text-sm flex justify-between px-4 py-1.5 rounded-lg hover:bg-[#333333d0] transition-colors">
-                <Image src={driveIcon} alt="google drive icon" className="w-5" />
-                Make a copy
-              </button>
+            <div className=''>
+              <h1 className="pt-4 font-medium">{template.name}</h1>
+              <h2 className="text-xs mb-6">{template.category}</h2>
+              <div className="flex justify-start space-x-4 py-2">
+                <button className="w-[120px] bg-white text-sm flex justify-center px-4 py-1.5 rounded-lg border hover:bg-[#5064ff49] transition-colors" onClick={togglePreview}>
+                  Preview
+                </button>
+                <button className="w-[155px] bg-[#333] text-white text-sm flex justify-between px-4 py-1.5 rounded-lg hover:bg-[#333333d0] transition-colors">
+                  <Image src={driveIcon} alt="google drive icon" className="w-5" />
+                  Make a copy
+                </button>
+              </div>
             </div>
           </motion.div>
         ))}
       </div>
-      {showPreview && <IFrames toggle={togglePreview}/>}
+      {showPreview && <IFrames toggle={togglePreview} />}
     </div>
   );
 };

@@ -4,6 +4,11 @@ import TemplatesThumbnails from '@/components/TemplatesThumbnails';
 import TemplatesFilteredList from '@/components/TemplatesFilteredList';
 
 import imgSamplePL from '@/images/screenshots/templatePlaceholder.png'
+import imgSamplePL2 from '@/images/screenshots/templatePlaceholder2.png'
+import imgSamplePL3 from '@/images/screenshots/templatePlaceholder3.png'
+import imgSamplePL4 from '@/images/screenshots/inventory.png'
+import imgSamplePL5 from '@/images/screenshots/vat-returns.png'
+import imgSamplePL6 from '@/images/screenshots/templatePlaceholder6.png'
 import IFrames from '@/components/IFrames';
 
 export default function Example() {
@@ -48,7 +53,7 @@ const templates = [
     category: 'Financial Reporting',
     description: 'Manage your business’s liquidity with ease. This Cash Flow Template helps monitor incoming and outgoing funds, ensuring you maintain a healthy financial balance.',
     href: 'https://docs.google.com/spreadsheets/d/165ZQjRDegYgSONV-Xup_Y3fTBYoJhIoiV9G0S6FTsI8/copy',
-    imageSrc: imgSamplePL,
+    imageSrc: imgSamplePL2,
     imageAlt: 'template preview',
     preview: IFrames,
   },
@@ -59,7 +64,7 @@ const templates = [
     description:
       'Project your future expenses and income with our comprehensive Budget Forecast Template. Ideal for businesses planning their financial strategy for the upcoming quarters.',
     href: '/dashboard/budget-forecast',
-    imageSrc: imgSamplePL,
+    imageSrc: imgSamplePL3,
     imageAlt: 'Budget forecast template preview',
     preview: IFrames,
   },
@@ -70,7 +75,7 @@ const templates = [
     description:
       'Get a snapshot of your company’s financial health with our detailed Balance Sheet Template, showing assets, liabilities, and equity.',
     href: '/dashboard/balance-sheet',
-    imageSrc: imgSamplePL,
+    imageSrc: imgSamplePL4,
     imageAlt: 'Balance sheet template preview',
   },
   {
@@ -80,7 +85,7 @@ const templates = [
     description:
       'Keep a close eye on your expenditures with our Expense Tracking Template, designed to help you monitor and categorize every expense.',
     href: '/dashboard/expense-tracking',
-    imageSrc: imgSamplePL,
+    imageSrc: imgSamplePL6,
     imageAlt: 'Expense tracking template preview',
   },
   {
@@ -90,7 +95,7 @@ const templates = [
     description:
       'Streamline your billing process with our Invoice Management Template. Track issued invoices, received payments, and pending amounts all in one place.',
     href: '/dashboard/invoice-management',
-    imageSrc: imgSamplePL,
+    imageSrc: imgSamplePL5,
     imageAlt: 'Invoice management template preview',
   },
   {
@@ -100,7 +105,7 @@ const templates = [
     description:
       'Dive deep into your company’s financial statements to analyze performance with our Financial Statement Analysis Template.',
     href: '/dashboard/financial-statement-analysis',
-    imageSrc: imgSamplePL,
+    imageSrc: imgSamplePL2,
     imageAlt: 'Financial statement analysis template preview',
   },
   {
@@ -110,7 +115,7 @@ const templates = [
     description:
       'Determine the point at which your business will be able to cover all its expenses and start generating profit with our Break-even Analysis Template.',
     href: '/dashboard/break-even-analysis',
-    imageSrc: imgSamplePL,
+    imageSrc: imgSamplePL4,
     imageAlt: 'Break-even analysis template preview',
   },
   {
@@ -120,7 +125,7 @@ const templates = [
     description:
       'Manage your loan payments and interest rates with our Loan Amortization Schedule Template, allowing you to see the long-term impact of loans on your finances.',
     href: '/dashboard/loan-amortization',
-    imageSrc: imgSamplePL,
+    imageSrc: imgSamplePL6,
     imageAlt: 'Loan amortization schedule template preview',
   },
   {
@@ -130,7 +135,7 @@ const templates = [
     description:
       'Predict your future sales volumes and revenue with our Sales Forecast Template, perfect for businesses looking to prepare for growth and seasonal trends.',
     href: '/dashboard/sales-forecast',
-    imageSrc: imgSamplePL,
+    imageSrc: imgSamplePL3,
     imageAlt: 'Sales forecast template preview',
   },
   {
@@ -150,7 +155,7 @@ const templates = [
     description:
       'Plan out your initial business costs with our Startup Costs Template. It’s ideal for entrepreneurs calculating the capital needed to start their business ventures.',
     href: '/dashboard/startup-costs',
-    imageSrc: imgSamplePL,
+    imageSrc: imgSamplePL5,
     imageAlt: 'Startup costs template preview',
   },
 ];

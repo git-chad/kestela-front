@@ -12,7 +12,7 @@ const IFrames: React.FC<IFramesProps> = ({ toggle }) => {
       <button className='absolute w-12 -right-12 top-0' onClick={toggle}>
         <XMarkIcon className='text-[#5064ff] bg-gray-100 rounded-r-xl'/>
       </button>
-        <iframe className='w-full h-full' src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTrG3Bfd8qaFVeXiK-ayhUWlAdx2132gwCwKtNYIScgdCLCM_5XkwFpOLfmUoJR58pVcE9TW3RFqH08/pubhtml?widget=true&amp;headers=false"></iframe>
+      <iframe className='h-full' src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQeb0jLUqx76LK5fLv6Lirb_QA0zBnAzkjH0mcNtRqoJlwx3nPMZlYkRyprzY8b95ImMJShaOq7RbU2/pubhtml?gid=937445175&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
       </div>
     </div>
   )
