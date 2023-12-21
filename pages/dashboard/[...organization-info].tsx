@@ -5,6 +5,7 @@ import { PencilIcon, EnvelopeIcon, ChevronUpDownIcon } from '@heroicons/react/24
 import RoleDropdown from '@/components/RoleDropdown';
 import OrganizationsDropdownSelector from '@/components/OrganizationsDropdownSelector';
 import Invites from '@/components/Invites';
+import EmailTemplate from '@/components/Email-Template';
 
 const OrganizationInfo = () => {
   const router = useRouter();
@@ -105,6 +106,7 @@ const OrganizationInfo = () => {
         </div>
         <Invites/>
       </AnimatePresence>
+      {/* <EmailTemplate firstName='tobi' company='page unlimited 2'/> */}
     </div>
   );
 };

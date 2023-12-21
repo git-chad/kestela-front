@@ -64,7 +64,7 @@ const Organizations = () => {
       </div>
 
       <AnimatePresence>
-        <div className="space-y-8">
+      <div className="max-w-5xl grid grid-cols-2 gap-2">
           {organizations.map((company, index) => (
             <div className="relative max-w-md" key={index}>
               <motion.a

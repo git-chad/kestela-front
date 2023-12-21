@@ -1,8 +1,9 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import CategoryDropdown from './CategoryDropdown';
 import IFrames from './IFrames';
+import CopyModal from './CopyModal';
 
 interface Template {
   id: number;
@@ -17,10 +18,21 @@ const TemplatesFilteredList: React.FC<{ templates: Template[] }> = ({ templates 
   const [filteredTemplates, setFilteredTemplates] = useState(templates);
   const [searchQuery, setSearchQuery] = useState('');
   const [showPreview, setShowPreview] = useState(false);
+  const [copyModalInfo, setCopyModalInfo] = useState<{ visible: boolean; name: string }>({
+    visible: false,
+    name: '',
+  });
 
   const togglePreview = () => {
-    setShowPreview(!showPreview)
-  }
+    setShowPreview(!showPreview);
+  };
+
+  const toggleCopyModal = (name: string) => {
+    setCopyModalInfo((prevInfo) => ({
+      visible: !prevInfo.visible,
+      name: prevInfo.visible ? '' : name,
+    }));
+  };
 
   const categoryOptions = useMemo(() => {
     const allCategories = templates.map((template) => template.category);
@@ -68,11 +80,12 @@ const TemplatesFilteredList: React.FC<{ templates: Template[] }> = ({ templates 
             <input
               id="search"
               name="search"
-              className="block w-full rounded-md bg-white py-2 pl-10 pr-3 placeholder:text-gray-400 sm:text-sm sm:leading-6 border-gray-100" 
+              className="block w-full rounded-md bg-white py-2 pl-10 pr-3 placeholder:text-gray-400 sm:text-sm sm:leading-6 border-gray-100"
               placeholder="Search"
               type="search"
               value={searchQuery}
               onChange={handleSearchChange}
+              autoComplete="off"
             />
           </div>
         </div>
@@ -121,7 +134,7 @@ const TemplatesFilteredList: React.FC<{ templates: Template[] }> = ({ templates 
                 {filteredTemplates.map((template) => (
                   <motion.tr
                     key={template.id}
-                    variants={rowVariants}
+                    variants={overlayVariants}
                     initial="initial"
                     animate="animate"
                     exit="exit"
@@ -140,14 +153,20 @@ const TemplatesFilteredList: React.FC<{ templates: Template[] }> = ({ templates 
                       {template.description}
                     </td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                      <button className="text-[#5064FF] hover:text-indigo-900" onClick={togglePreview}>
+                      <button
+                        className="text-[#5064FF] hover:text-indigo-900"
+                        onClick={togglePreview}
+                      >
                         Preview
                       </button>
                     </td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                      <a href="#" className="text-[#5064FF] hover:text-indigo-900">
+                      <button
+                        className="text-[#5064FF] hover:text-indigo-900"
+                        onClick={() => toggleCopyModal(template.name)}
+                      >
                         Copy
-                      </a>
+                      </button>
                     </td>
                   </motion.tr>
                 ))}
@@ -156,15 +175,45 @@ const TemplatesFilteredList: React.FC<{ templates: Template[] }> = ({ templates 
           </div>
         </div>
       </div>
-      {showPreview && <IFrames toggle={togglePreview}/>}
+      <AnimatePresence>
+        {showPreview && (
+          <motion.div
+            key="iframe"
+            variants={overlayVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={transition}
+          >
+            <IFrames toggle={togglePreview} />
+          </motion.div>
+        )}
+        {copyModalInfo.visible && (
+          <motion.div
+            key="copyModal"
+            variants={overlayVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={transition}
+          >
+            <CopyModal name={copyModalInfo.name} setCopyModalInfo={setCopyModalInfo} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
 
 export default TemplatesFilteredList;
 
-const rowVariants = {
+const overlayVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
   exit: { opacity: 0 },
+};
+
+const transition = {
+  duration: 0.5,
+  ease: [0.77, 0, 0.18, 1],
 };

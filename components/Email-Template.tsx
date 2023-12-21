@@ -21,7 +21,7 @@ export const EmailTemplate = ({ firstName, company }: KestelaInviteEmailProps) =
   <Html>
     <Head />
     <Preview>The best for investments</Preview>
-    <Body style={main}>
+    <Body style={{...main, background: "linear-gradient(to top right, white 0%, #e8e1ff 100%)", borderRadius: "16px", padding: 100, WebkitBackdropFilter: 'blur'}}>
       <Container style={container}>
       <Text style={title}>Kestela</Text>
         <Text style={paragraph}>Hi {firstName},</Text>
@@ -33,7 +33,7 @@ export const EmailTemplate = ({ firstName, company }: KestelaInviteEmailProps) =
           If you do not wish to continue, simply ignore this email.
         </Text>
         <Section style={btnContainer}>
-          <Button style={{ ...button, padding: '12px' }} href="kestela.com">
+          <Button style={{ ...button, padding: '8px 40px', borderRadius: '12px' }} href="kestela.com">
             Accept
           </Button>
         </Section>
