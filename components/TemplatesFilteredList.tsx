@@ -115,13 +115,13 @@ const TemplatesFilteredList: React.FC<{ templates: Template[] }> = ({ templates 
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 hidden sm:block"
                   >
                     Category
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 hidden sm:block"
                   >
                     Description
                   </th>
@@ -146,10 +146,10 @@ const TemplatesFilteredList: React.FC<{ templates: Template[] }> = ({ templates 
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
                       {template.name}
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden sm:block">
                       {template.category}
                     </td>
-                    <td className="px-3 py-4 text-sm text-gray-500 max-w-[60ch]">
+                    <td className="px-3 py-4 text-sm text-gray-500 max-w-[60ch] hidden sm:block">
                       {template.description}
                     </td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">

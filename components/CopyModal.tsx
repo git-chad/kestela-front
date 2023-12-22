@@ -9,7 +9,7 @@ type CopyModalProps = {
 const CopyModal: React.FC<CopyModalProps> = ({ name, setCopyModalInfo }) => {
   return (
     <div className="fixed inset-0 bg-gray-100 bg-opacity-50 flex justify-center items-center">
-      <div className="w-[20vw] bg-white rounded-xl flex justify-center items-center self-center shadow-xl p-8">
+      <div className="sm:w-[20vw] bg-white rounded-xl flex justify-center items-center self-center shadow-xl p-8">
         <div className="flex flex-col">
           <h1 className="text-xl mb-8">
             Make a copy of <b className="text-[#5064FF]">{name}</b> for:

@@ -48,6 +48,7 @@ export default function Integrations() {
   const router = useRouter();
 
   const getAuthUrl = async (e: boolean) => {
+    
     if (e) {
       try {
         setEnabled(true);

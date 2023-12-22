@@ -47,16 +47,6 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
-const variants = {
-  open: { width: '100%', transition: { duration: 0.3 } },
-  closed: { width: '28%', transition: { duration: 0.3 } },
-};
-
-const logoVariants = {
-  visible: { opacity: 1, transition: { duration: 0.6 } },
-  hidden: { opacity: 0, transition: { duration: 0.6 } },
-};
-
 export default function Sidebar() {
   const { data } = useSession() as any;
   const router = useRouter();
@@ -215,3 +205,13 @@ export default function Sidebar() {
     </AnimatePresence>
   );
 }
+
+const variants = {
+  open: { width: '100%', transition: { duration: 0.3 } },
+  closed: { width: '28%', transition: { duration: 0.3 } },
+};
+
+const logoVariants = {
+  visible: { opacity: 1, transition: { duration: 0.6 } },
+  hidden: { opacity: 0, transition: { duration: 0.6 } },
+};

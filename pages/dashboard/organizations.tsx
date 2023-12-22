@@ -55,7 +55,7 @@ const Organizations = () => {
         Add new organization
       </button>
 
-      <div className="absolute top-0 right-0 z-50">
+      <div className="absolute top-0 right-0 z-50 pointer-events-none">
         <OrgModal
           onClose={() => setModalOpen(false)}
           onSave={handleSaveNewCompany}
@@ -64,7 +64,7 @@ const Organizations = () => {
       </div>
 
       <AnimatePresence>
-      <div className="max-w-5xl grid grid-cols-2 gap-2">
+      <div className="w-[80vw] sm:w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 gap-2">
           {organizations.map((company, index) => (
             <div className="relative max-w-md" key={index}>
               <motion.a
@@ -112,7 +112,7 @@ const Organizations = () => {
               >
                 <button
                   onClick={(event) => toggleDropdown(company.companyName, event)}
-                  className="w-full"
+                  className="w-full ml-3 sm:ml-0"
                 >
                   <EllipsisVerticalIcon />
                 </button>

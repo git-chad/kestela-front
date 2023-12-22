@@ -42,13 +42,13 @@ const OrganizationInfo = () => {
   return (
     <div className="mx-auto my-20 max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col">
       <div className='flex items-center'>
-        <h1 className="text-5xl font-medium">{companyName}</h1>
-        <button className={`relative ${!orgSelector ? '' : ''}`} onClick={toggleSelector}>
+        <h1 className="sm:text-5xl text-3xl font-medium">{companyName}</h1>
+        <button className={`sm:relative ${!orgSelector ? '' : ''}`} onClick={toggleSelector}>
           <ChevronUpDownIcon className='w-14 text-[#5865FF] hover:text-[#5866ffc9] transition-all'/>
           {orgSelector ? <OrganizationsDropdownSelector companies={companies} currentCompany={companyName}/> : ''}
         </button>
       </div>
-      <h2 className="text-2xl">{companyData?.companyDescription}</h2>
+      <h2 className="sm:text-2xl text-xl">{companyData?.companyDescription}</h2>
       <a
         href={
           companyData?.companyWebsite.startsWith('http')
@@ -63,11 +63,11 @@ const OrganizationInfo = () => {
       </a>
 
       <AnimatePresence>
-        <div>
+        <div className='flex flex-col justify-center'>
           {companyData?.members.map((member, index) => (
             <motion.div
             key={`${member.email}-${companyName}`}
-              className="flex w-[40%] justify-between mt-6 relative"
+              className="flex sm:w-[40%] w-[80%] justify-between mt-6 relative"
               variants={memberVariants}
               initial="initial"
               animate="animate"

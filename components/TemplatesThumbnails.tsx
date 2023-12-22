@@ -36,7 +36,7 @@ const TemplatesThumbnails: React.FC<{ templates: Template[] }> = ({ templates })
 
   return (
     <div>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid sm:grid-cols-3 sm:gap-4">
         {templates.map((template) => (
           <motion.div
             className="px-3 py-2 rounded-xl shadow bg-[#33333305] flex flex-col justify-between"

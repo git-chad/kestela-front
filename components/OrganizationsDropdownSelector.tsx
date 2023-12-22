@@ -25,8 +25,8 @@ type Company = {
       );
 
   return (
-    <motion.div className='z-50 bg-gray-100 w-96 rounded-xl shadow-lg absolute left-16 top-0' variants={modalVariants} initial={'initial'} animate='animate' exit='exit'>
-        <div className="searh-bar container w-full">
+    <motion.div className='z-50 bg-gray-100 sm:w-96 w-[80%] rounded-xl sm:shadow-lg shadow-2xl absolute sm:left-16 sm:top-0 top-42 right-8' variants={modalVariants} initial={'initial'} animate='animate' exit='exit'>
+        <div className="searh-bar container w-full hidden sm:block">
           <label htmlFor="search" className="sr-only">
             Search template
           </label>

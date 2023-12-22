@@ -58,7 +58,7 @@ const Invites = () => {
       <p className="text-sm text-gray-400">
         Validate the emails entered by tapping spacebar
       </p>
-      <form className="flex flex-col w-1/3" onSubmit={send}>
+      <form className="flex flex-col sm:w-1/3" onSubmit={send}>
         <input
           type="text"
           value={inputValue}

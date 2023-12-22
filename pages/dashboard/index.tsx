@@ -18,10 +18,10 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="w-full flex flex-col min-h-[96vh] items-center justify-center">
+      <div className="w-full flex flex-col h-full sm:min-h-[96vh] items-center justify-center">
         <div className='text-center'>
-          <h1 className={`text-8xl ${poppins.className} font-bold text-[#3c4bbe]`}>Under construction</h1>
-          <h2 className={`text-5xl ${lora.className} mt-2 font-semibold text-[#333333]`}>Check back soon!</h2>
+          <h1 className={`text-3xl sm:text-8xl ${poppins.className} font-bold text-[#3c4bbe]`}>Under construction</h1>
+          <h2 className={`text-2xl sm:text-5xl ${lora.className} mt-2 font-semibold text-[#333333]`}>Check back soon!</h2>
         </div>
         {/* <div className='p-8 mt-56'>
           <Image src={underconstuction} alt='under construction doodle' className='w-[30vw]'/>

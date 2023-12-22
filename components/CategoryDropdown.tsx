@@ -8,17 +8,31 @@ interface CategoryDropdownProps {
   onCategoryChange: (newCategory: string) => void;
 }
 
-const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ currentCategory, categoryOptions, onCategoryChange }) => {
-    const [open, setOpen] = useState(false);
+const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
+  currentCategory,
+  categoryOptions,
+  onCategoryChange,
+}) => {
+  const [open, setOpen] = useState(false);
+
+  const truncateString = (str: string, num: number) => {
+    if (str.length > num) {
+      return str.slice(0, num) + '...';
+    } else {
+      return str;
+    }
+  };
 
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button 
-        className="inline-flex justify-between rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 border border-gray-100"
-        onClick={() => setOpen(!open)}
+        <Menu.Button
+          className="inline-flex justify-between rounded-md px-4 py-2 h-[42px] max-h-[42px] min-w-full w-[172px] text-gray-700 hover:bg-gray-50 border border-gray-100"
+          onClick={() => setOpen(!open)}
         >
-          {currentCategory}
+          <span className="block overflow-hidden text-ellipsis whitespace-nowrap sm:text-sm text-xs">
+            {truncateString(currentCategory, 12)}
+          </span>
           <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
         </Menu.Button>
       </div>
@@ -41,7 +55,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ currentCategory, ca
                     onClick={() => onCategoryChange(category)}
                     className={`${
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
-                    } group flex w-full items-center rounded-md px-4 py-2 text-sm`}
+                    } group flex w-full items-center rounded-md px-4 py-2 sm:text-sm text-xs hover:bg-indigo-100 transition-colors active:bg-indigo-300`}
                   >
                     {category}
                   </button>
