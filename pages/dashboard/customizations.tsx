@@ -49,7 +49,6 @@ const Customizations = () => {
                 className="block w-full rounded-md bg-white py-2 pl-10 pr-3 max-h-12 placeholder:text-gray-400 sm:text-sm sm:leading-6 border-gray-100"
                 placeholder="Search"
                 type="search"
-                onChange={() => {}}
                 autoComplete="off"
               />
             </div>
