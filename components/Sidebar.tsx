@@ -59,7 +59,7 @@ export default function Sidebar() {
   return (
     <AnimatePresence>
       <motion.div
-        className="flex min-h-0 flex-1 flex-col border-r border-gray-200 col-span-1 relative"
+        className="flex min-h-0 h-full flex-1 flex-col border-r border-gray-200 col-span-1 relative"
         animate={isOpen ? 'open' : 'closed'}
         variants={variants}
       >

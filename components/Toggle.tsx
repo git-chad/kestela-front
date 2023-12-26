@@ -1,12 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Switch } from '@headlessui/react'
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
+interface ToggleProps {
+  include: boolean;
+}
 
-export default function Toggle() {
-  const [enabled, setEnabled] = useState(false)
+const Toggle: React.FC<ToggleProps> = ({ include }) => {
+  const [enabled, setEnabled] = useState(include);
 
   return (
     <Switch
@@ -28,3 +31,5 @@ export default function Toggle() {
     </Switch>
   )
 }
+
+export default Toggle;

@@ -55,7 +55,7 @@ const Organizations = () => {
         Add new organization
       </button>
 
-      <div className="absolute top-0 right-0 z-50 pointer-events-none">
+      <div className={`absolute top-0 right-0 z-50 ${isModalOpen ? '' : 'pointer-events-none'}`}>
         <OrgModal
           onClose={() => setModalOpen(false)}
           onSave={handleSaveNewCompany}

@@ -116,8 +116,8 @@ const Customizations = () => {
                 {template.type}
               </td>
               <td className="px-3 py-4 text-sm text-gray-500 max-w-[60ch]">
-                {template.include}
-                <Toggle />
+              {template.include}
+              <Toggle include={template.include} />
               </td>
               <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0 hidden sm:block">
                 <input
@@ -147,7 +147,7 @@ const plAccounts = [
     id: 1,
     mapping: 'p&l mapping',
     type: 'Revenue',
-    include: true,
+    include: false,
     name: 'Product Sales',
   },
   {

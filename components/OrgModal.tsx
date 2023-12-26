@@ -29,7 +29,7 @@ const OrgModal: React.FC<OrgModalProps> = ({ onClose, onSave, status }) => {
         duration: 0.5,
         ease: [0.77, 0, 0.18, 1],
       }}
-      className={`modal-background relative w-[500px] min-h-screen border-l border-gray-200 p-8 bg-white ${
+      className={`modal-background z-50 relative w-screen sm:w-[500px] min-h-screen border-l border-gray-200 p-8 bg-white ${
         status ? '' : 'pointer-events-none'
       } overflow-hidden`}
     >
