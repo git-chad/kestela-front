@@ -14,7 +14,6 @@ import { SecondaryFeatures } from '@/components/SecondaryFeatures';
 import { Testimonials } from '@/components/Testimonials';
 import Hero3d from '@/components/Hero3d';
 import HeroBanner from '@/components/HeroBanner';
-import { useEffect } from 'react';
 
 export default function Home() {
   // smooth scroll, problematic with 3d models due to lag

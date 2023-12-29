@@ -153,7 +153,7 @@ function FeaturesDesktop() {
     <Tab.Group as="div" className="relative hidden lg:mt-20 lg:flex justify-center items-center " selectedIndex={changeIndex} onChange={setChangeIndex}>
       {({ selectedIndex }) => (
         <>
-          <Tab.List className="flex flex-col absolute left-96">
+          <Tab.List className="flex flex-col absolute left-8">
             {features.map((feature, featureIndex) => (
               <Feature
                 key={feature.name}
@@ -171,7 +171,7 @@ function FeaturesDesktop() {
               />
             ))}
           </Tab.List>
-          <Tab.Panels className="relative mt-20 overflow-hidden rounded-4xl bg-gradient-to-tr from-[#D5F2FE] to-[#E7DEFF] max-w-7xl px-14 py-16 xl:px-16">
+          <Tab.Panels className="relative mt-20 overflow-hidden rounded-4xl bg-gradient-to-tr from-[#D5F2FE] to-[#E7DEFF] max-w-6xl px-14 py-16 xl:px-16">
             <div className="-mx-5 flex">
               {features.map((feature, featureIndex) => (
                 <Tab.Panel

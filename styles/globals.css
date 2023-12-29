@@ -24,3 +24,10 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: #373f9f; 
 }
+
+.text-gradient {
+  background: linear-gradient(to right, #d7acff, #96a1ff, #b486ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

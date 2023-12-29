@@ -10,17 +10,17 @@ const poppins = Poppins({
 const PrimaryFeatures2 = () => {
   return (
     <div className="bg-white w-full h-screen flex flex-col justify-center items-center">
-      <h1 className="z-10 ml-64 font-display text-3xl font-medium tracking-tight text-[#333] sm:text-5xl mb-16 self-start">
+      <h1 className="z-10 font-display text-3xl font-medium tracking-tight text-[#333] 2xl:text-5xl mb-16">
         Investor approved templates synced to your data.
       </h1>
 
-      <div className="z-10 bg-white rounded-4xl max-w-[80%]">
+      <div className="z-10 bg-white bg-opacity-10 backdrop-blur-lg rounded-4xl max-w-[80%] shadow-lg">
         <section className="grid grid-cols-4">
           {features.map((feature, index) => (
-            <figure className="p-16 space-y-8 flex flex-col" key={index}>
-              <p className="text-zinc-500 text-4xl">0{feature.num}</p>
-              <h1 className={`${poppins.className} text-5xl`}>{feature.title}</h1>
-              <p className={`${poppins.className} text-3xl pb-24 tracking-tight text-slate-800`}>
+            <figure className="pt-12 px-4 flex flex-col" key={index}>
+              <p className="text-zinc-500 2xl:text-xl">0{feature.num}</p>
+              <h1 className={`${poppins.className} 2xl:text-3xl mb-12 h-16`}>{feature.title}</h1>
+              <p className={`${poppins.className} 2xl:text-base pb-24 tracking-tight text-slate-800`}>
                 {feature.description}
               </p>
             </figure>
@@ -28,7 +28,7 @@ const PrimaryFeatures2 = () => {
         </section>
       </div>
 
-      <div className="absolute top-0 left-0 w-full blur-3xl opacity-20 scale-90">
+      <div className="absolute top-0 left-0 w-full opacity-80">
         <Spline scene="https://prod.spline.design/wnML6gqXTL5MlCZP/scene.splinecode" />
       </div>
     </div>

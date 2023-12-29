@@ -6,8 +6,8 @@ import Image from 'next/image';
 const Hero3d = () => {
   return (
     <div className="relative min-h-screen min-w-screen flex flex-col items-center justify-center">
-      <div className="absolute z-10 w-full h-full">
-        <Spline scene="https://prod.spline.design/Gdh7z9vsKEOJhlA5/scene.splinecode" />
+      <div className="absolute z-10">
+      <Spline scene="https://prod.spline.design/Gdh7z9vsKEOJhlA5/scene.splinecode" />
       </div>
 
       <div className='z-50 text-center pointer-events-none'>

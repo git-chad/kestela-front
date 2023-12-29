@@ -11,19 +11,19 @@ const poppins = Poppins({
 
 const HeroBanner = () => {
   return (
-    <div className="min-w-screen h-[50vh] flex flex-col items-center justify-center bg-[#f9f9f9]">
+    <div className="min-w-screen 2xl: min-h-[50vh] h-screen flex flex-col items-center justify-center bg-[#f9f9f9]">
       <p
-        className={`z-20 max-w-4xl font-display text-3xl font-medium tracking-tight text-[#333] sm:text-5xl text-center ${poppins.className}`}
+        className={`z-20 max-w-4xl font-display text-3xl font-medium tracking-tight text-[#333] 2xl:text-5xl text-center ${poppins.className}`}
       >
         Automate your data into the templates you love without losing the flexibility of
-        spreadsheets.
+        <span className='text-[#5E66FF]'> spreadsheets.</span>
       </p>
       <div className="z-20 mt-10 flex justify-center gap-x-6">
         <Button href="/register">Start for free (no cc required)</Button>
         <Button href="" variant="outline">
           <svg
             aria-hidden="true"
-            className="h-3 w-3 flex-none fill-blue-600 group-active:fill-current"
+            className="h-3 w-3 flex-none fill-[#5E66FF] group-active:fill-current"
           >
             <path d="m9.997 6.91-7.583 3.447A1 1 0 0 1 1 9.447V2.553a1 1 0 0 1 1.414-.91L9.997 5.09c.782.355.782 1.465 0 1.82Z" />
           </svg>

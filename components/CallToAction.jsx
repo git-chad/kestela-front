@@ -8,19 +8,19 @@ export function CallToAction() {
   return (
     <section
       id="get-started-today"
-      className="relative overflow-hidden bg-blue-600 py-32"
+      className="relative overflow-hidden bg-[#10172A] py-32"
     >
-      <Image
+      {/* <Image
         className="absolute top-1/2 left-1/2 max-w-none -translate-x-1/2 -translate-y-1/2"
         src={backgroundImage}
         alt=""
         width={2347}
         height={1244}
         unoptimized
-      />
+      /> */}
       <Container className="relative">
         <div className="mx-auto max-w-lg text-center">
-          <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
+          <h2 className="text-gradient text-medium font-display text-3xl tracking-tight text-white sm:text-5xl">
             Try it for free today
           </h2>
           <p className="mt-4 text-lg tracking-tight text-white">
