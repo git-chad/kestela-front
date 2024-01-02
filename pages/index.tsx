@@ -85,7 +85,7 @@ export default function Home() {
           <CallToAction />
           <Testimonials />
           <Pricing />
-          <Faqs />
+          {/* <Faqs /> */}
         </div>
       </main>
       <Footer />

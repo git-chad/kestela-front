@@ -1,6 +1,6 @@
 import { ApiClient } from './axiosClient';
 
-const baseURL = process.env.BACK_URL as string;
+const baseURL = process.env.NEXT_PUBLIC_BACK_URL as string;
 const axios = ApiClient(baseURL);
 
 export async function getQbUri() {

@@ -6,7 +6,7 @@ import { Resend } from 'resend';
 const Invites = () => {
   const [emails, setEmails] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState('');
-  const resendKey = process.env.RESEND_API_KEY as string;
+  const resendKey = process.env.NEXT_PUBLIC_RESEND_API_KEY as string;
 
   const company = "Set & Forget"
 

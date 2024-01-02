@@ -33,7 +33,7 @@ const authOptions: AuthOptions = {
   },
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
     }),
     
@@ -81,7 +81,7 @@ const authOptions: AuthOptions = {
           firstname: todo.profile.given_name,
           lastname: todo.profile.family_name
         }
-        const res = await fetch(`${process.env.BACK_URL}/v2/users/register`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/v2/users/register`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body),

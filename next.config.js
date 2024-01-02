@@ -2,8 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    BACK_URL: process.env.BACK_URL,
-    RESEND_API_KEY: process.env.RESEND_API_KEY,
+    BACK_URL: process.env.NEXT_PUBLIC_BACK_URL,
+    RESEND_API_KEY: process.env.NEXT_PUBLIC_RESEND_API_KEY,
   },
   // experimental: {
   //   scrollRestoration: true,

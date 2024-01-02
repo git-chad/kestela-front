@@ -29,7 +29,7 @@ import { EmailTemplate } from '@/components/Email-Template';
 export default async function handler(req: any, res: any) {
     if (req.method === 'POST') {
         const { emails, company } = req.body;
-        const resendKey = process.env.RESEND_API_KEY;
+        const resendKey = process.env.NEXT_PUBLIC_RESEND_API_KEY;
 
         const resend = new Resend(resendKey);
 
