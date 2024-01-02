@@ -14,7 +14,7 @@ const PrimaryFeatures2 = () => {
         Investor approved templates synced to your data.
       </h1>
 
-      <div className="z-10 bg-white bg-opacity-10 backdrop-blur-lg rounded-4xl max-w-[80%] shadow-lg">
+      <div className="z-10 bg-white bg-opacity-10 backdrop-blur-2xl rounded-4xl max-w-[80%] shadow-lg">
         <section className="grid grid-cols-4">
           {features.map((feature, index) => (
             <figure className="pt-12 px-4 flex flex-col" key={index}>
@@ -28,7 +28,7 @@ const PrimaryFeatures2 = () => {
         </section>
       </div>
 
-      <div className="absolute top-0 left-0 w-full opacity-80">
+      <div className="absolute top-0 left-0 w-full opacity-80 blur-md">
         <Spline scene="https://prod.spline.design/wnML6gqXTL5MlCZP/scene.splinecode" />
       </div>
     </div>
