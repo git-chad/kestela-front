@@ -1,9 +1,7 @@
-import { PopupButton } from '@typeform/embed-react';
-import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 import { useSession } from 'next-auth/react';
-import underconstuction from '@/public/undcons2.png'
 import {Poppins, Lora} from '@next/font/google'
+import { fetchAndStoreUserData } from '../api/user/data';
 
 const lora = Lora({subsets: ['latin'], style: ['italic'], weight: 'variable'})
 const poppins = Poppins({subsets: ['latin'], weight: ['500', '700', '300', '900', '200', '400']})
@@ -11,17 +9,25 @@ const poppins = Poppins({subsets: ['latin'], weight: ['500', '700', '300', '900'
 export default function Dashboard() {
   const { data } = useSession() as any;
   const ref = useRef() as any;
-
+  
   useEffect(() => {
-    ref.current?.open()
-  }, [])
-
+    async function handleUserData() {
+      if (data?.user?.email) {
+        await fetchAndStoreUserData(data.user.email);
+        const storedUserId = localStorage.getItem('userId');
+        console.log('user id saved in localStorage:', storedUserId);
+      }
+    }
+    handleUserData();
+  }, [data]);
+  
   return (
     <>
       <div className="w-full flex flex-col h-full sm:min-h-[96vh] items-center justify-center">
         <div className='text-center'>
           <h1 className={`text-3xl sm:text-8xl ${poppins.className} font-bold text-[#3c4bbe]`}>Under construction</h1>
           <h2 className={`text-2xl sm:text-5xl ${lora.className} mt-2 font-semibold text-[#333333]`}>Check back soon!</h2>
+
         </div>
         {/* <div className='p-8 mt-56'>
           <Image src={underconstuction} alt='under construction doodle' className='w-[30vw]'/>
